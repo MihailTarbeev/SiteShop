@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block "content" %}
+<h1>Авторизация</h1>
+<form method="post">
+{% csrf_token %}
+<input type="hidden" name="next" value="{{ next }}">
+<div class="form-error" style="color:red">{{ error }}</div>
+
+{{ form.as_p }}
+
+<p><button type="submit">Войти</button></p>
+
+{% endblock %}
