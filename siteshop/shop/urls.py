@@ -3,10 +3,8 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.index, name='home'),
-    path('about/', views.about, name='about'),
-    path('addpage/', views.addpage, name='add_page'),
-    path('contact/', views.contact, name='contact'),
-    path('login/', views.login, name='login'),
-    path('post/<int:post_id>/', views.show_post, name='post')
+    path('', views.home, name='home'),
+    # path('test-auth/', views.test_auth, name='test_auth'),
+    # path('create-test-user/', views.create_test_user, name='create_test_user'),
+    # path('generate-token/', views.generate_test_token, name='generate_token'),
 ]

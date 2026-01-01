@@ -115,9 +115,11 @@ ddsmoothmenu.init({
         <a href="#" class="buy_now">Browse All Products</a>
     </div> <!-- END of middle -->
     
-    <div id="templatemo_main_top"></div>
-    <div id="templatemo_main">
+
+    <<div id="templatemo_main">
     	<div id="product_slider">
+
+            {% block "menu_products" %}
     		<div id="SlideItMoo_outer">	
                 <div id="SlideItMoo_inner">			
                     <div id="SlideItMoo_items">
@@ -152,6 +154,8 @@ ddsmoothmenu.init({
                     </div>			
                 </div>
             </div>
+            {% endblock %}
+
             <div class="cleaner"></div>
         </div>
         
@@ -183,6 +187,9 @@ ddsmoothmenu.init({
         </div> <!-- END of sidebar -->
         
         <div id="content">
+
+            {% block "content" %}
+
         	<div class="col col_14 product_gallery">
             	<a href="productdetail.html"><img src="{% static 'shop/images/product/01.jpg' %}" alt="Product 01" /></a>
                 <h3>Ut eu feugiat</h3>
@@ -236,10 +243,13 @@ ddsmoothmenu.init({
                 <h3>Nam vehicula</h3>
                 <p class="product_price">$ 65</p>
                 <a href="shoppingcart.html" class="add_to_cart">Add to Cart</a>
-            </div>        	
+            </div>
+            
+        {% endblock %}
+
         </div> <!-- END of content -->
         <div class="cleaner"></div>
-    </div> <!-- END of main -->
+    </div> <!-- END of main -->>
     
     <div id="templatemo_footer">
     	<div class="col col_16">

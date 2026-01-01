@@ -1,79 +1,107 @@
-from django.http import Http404, HttpResponse, HttpResponseNotFound, HttpResponseRedirect
-from django.shortcuts import redirect, render
-from django.urls import reverse
-from django.template.loader import render_to_string
-from django.template.defaultfilters import slugify
+# views.py
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import render
+from django.views.decorators.http import require_http_methods
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 
-menu = [
-    {'title': 'О сайте', 'url_name': 'about'},
-    {'title': 'Добавить статью', 'url_name': 'add_page'},
-    {'title': 'Обратная связь', 'url_name': 'contact'},
-    {'title': 'Войти', 'url_name': 'login'},
-]
-
-data_db = [
-    {'id': 1, "name": 'Михаил', 'content':
-
-     '''
-         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero.
-      ЭЭЭSuspendisse bibendum. Cras id urna. Morbi tincidunt, orci ac convallis
-      aliquam, lectus turpis varius lorem, eu posuere nunc justo tempus leo.
-      Donec mattis, purus nec placerat bibendum, dui pede condimentum odio, ac
-      blandit ante orci ut diam. Cras fringilla magna. Phasellus suscipit, leo a
-      pharetra condimentum, lorem tellus eleifend magna, eget fringilla velit
-      magna id neque. Curabitur vel urna. In tristique orci porttitor ipsum.
-      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero.
-      Suspendisse bibendum. Cras id urna. Morbi tincidunt, orci ac convallis
-      aliquam, lectus turpis varius lorem, eu posuere nunc justo tempus leo.
-    </p>
-    <p>
-      Aenean consequat porttitor adipiscing. Nam pellentesque justo ut tortor
-      congue lobortis. Donec venenatis sagittis fringilla. Etiam nec libero
-      magna, et dictum velit. Proin mauris mauris, mattis eu elementum eget,
-      commodo in nulla. Mauris posuere venenatis pretium. Maecenas a dui sed
-      lorem aliquam dictum. Nunc urna leo, imperdiet eu bibendum ac, pretium ac
-      massa. Cum sociis natoque penatibus et magnis dis parturient montes,
-      nascetur ridiculus mus. Nulla facilisi. Quisque condimentum luctus
-      ullamcorper.
-    </p>
-     ''', "is_published": True},
-    {'id': 2, "name": 'Иван', 'content': '<p>Одногруппник хорошего человека</p>',
-        "is_published": True},
-    {'id': 3, "name": 'Борис', 'content': 'Неизвестный парень', "is_published": True},
-    {'id': 4, "name": 'Инокентий',
-        'content': 'Неизвестный парень', "is_published": False},
-]
+def home(request):
+    """Простая домашняя страница для тестирования"""
+    return render(request, 'shop/index.html')
 
 
-def index(request):
-    data = {"title": 'Главная страница',
-            "menu": menu,
-            "posts": data_db
-            }
-    return render(request, 'shop/index.html', context=data)
+# def register(request):
+#     if request.method == "POST":
+#         form = RegisterUserForm(request.POST)
+#         if form.is_valid():
+#             user = form.save(commit=False)
+#             user.set_password(form.cleaned_data["password"])
+#             user.save()
+#             return render(request, 'users/register_done.html')
+#     else:
+#         form = RegisterUserForm()
+#     return render(request, "users/register.html", {"form": form, "title": "Регистрация"})
+
+# def test_auth(request):
+#     """Тестовый эндпоинт для проверки авторизации"""
+#     if hasattr(request, 'user') and request.user.is_authenticated:
+#         user = request.user
+#         return JsonResponse({
+#             'status': 'authenticated',
+#             'message': 'User is authenticated',
+#             'user': {
+#                 'id': str(user.id),
+#                 'email': user.email,
+#                 'first_name': user.first_name,
+#                 'last_name': user.last_name,
+#                 'is_active': user.is_active
+#             }
+#         })
+#     else:
+#         return JsonResponse({
+#             'status': 'anonymous',
+#             'message': 'User is not authenticated'
+#         }, status=401)
 
 
-def addpage(request):
-    return HttpResponse(f'Добавление статьи')
+# @csrf_exempt
+# @require_http_methods(["POST"])
+# def create_test_user(request):
+#     """Создание тестового пользователя для проверки (только для разработки)"""
+#     try:
+#         data = json.loads(request.body)
+
+#         # Проверяем обязательные поля
+#         if 'email' not in data or 'password' not in data:
+#             return JsonResponse({'error': 'Email and password are required'}, status=400)
+
+#         # Создаем тестового пользователя
+#         user = CustomUser.objects.create(
+#             email=data['email'],
+#             first_name=data.get('first_name', 'Test'),
+#             last_name=data.get('last_name', 'User'),
+#             patronymic=data.get('patronymic', ''),
+#             is_active=True
+#         )
+
+#         # Устанавливаем пароль
+#         user.set_password(data['password'])
+#         user.save()
+
+#         return JsonResponse({
+#             'message': 'Test user created successfully',
+#             'user': {
+#                 'id': str(user.id),
+#                 'email': user.email,
+#                 'first_name': user.first_name,
+#                 'last_name': user.last_name
+#             }
+#         }, status=201)
+
+#     except json.JSONDecodeError:
+#         return JsonResponse({'error': 'Invalid JSON'}, status=400)
+#     except Exception as e:
+#         return JsonResponse({'error': str(e)}, status=400)
 
 
-def contact(request):
-    return HttpResponse(f'Обратная связь')
+# def generate_test_token(request):
+#     """Генерация тестового токена для существующего пользователя (только для разработки)"""
+#     try:
+#         email = request.GET.get('email')
+#         if not email:
+#             return JsonResponse({'error': 'Email parameter is required'}, status=400)
 
+#         user = CustomUser.objects.get(email=email, is_active=True)
+#         token = user.generate_jwt_token()
 
-def login(request):
-    return HttpResponse(f'Авторизация')
+#         return JsonResponse({
+#             'token': token,
+#             'user_email': user.email,
+#             'instructions': 'Use this token in Authorization header: Bearer YOUR_TOKEN'
+#         })
 
-
-def about(request):
-    data = {"title": 'О сайте', 'menu': menu}
-    return render(request, 'shop/about.html', context=data)
-
-
-def show_post(request, post_id):
-    return HttpResponse(f'Отображение статьи с id:{post_id}')
-
-
-def page_not_found_view(request, exception=None):
-    return HttpResponseNotFound(f"<h1>Ты не туда зашёл. Выйди!</h1>")
+#     except CustomUser.DoesNotExist:
+#         return JsonResponse({'error': 'User not found'}, status=404)
+#     except Exception as e:
+#         return JsonResponse({'error': str(e)}, status=400)
