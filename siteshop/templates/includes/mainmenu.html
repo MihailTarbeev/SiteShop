@@ -1,0 +1,26 @@
+        <ul>
+            <li><a href="{% url "home" %}" class="selected">Главная</a></li>
+            <li><a href="">Товары</a>
+                {% comment %} <ul>
+                    <li><a href="#">Sub menu 1</a></li>
+                    <li><a href="#">Sub menu 2</a></li>
+                    <li><a href="#">Sub menu 3</a></li>
+              </ul> {% endcomment %}
+            </li>
+            {% comment %} <li><a href="about.html">About</a>
+                <ul>
+                    <li><a href="#">Sub menu 1</a></li>
+                    <li><a href="#">Sub menu 2</a></li>
+                    <li><a href="#">Sub menu 3</a></li>
+                    <li><a href="#">Sub menu 4</a></li>
+                    <li><a href="#">Sub menu 5</a></li>
+              </ul>
+            </li>
+            <li><a href="faqs.html">FAQs</a></li>
+            <li><a href="checkout.html">Checkout</a></li>
+            <li><a href="contact.html">Contact</a></li> {% endcomment %}
+            <li><a href="{% url "users:login" %}">Войти</a></li>
+            <li><a href="{% url "users:logout" %}">Выйти</a></li>
+            <li><a href="{% url "users:profile" %}">Профиль</a></li>
+        </ul>
+        <br style="clear: left" />

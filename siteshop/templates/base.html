@@ -83,29 +83,7 @@ ddsmoothmenu.init({
     </div> <!-- END of header -->
     
     <div id="templatemo_menu" class="ddsmoothmenu">
-        <ul>
-            <li><a href="index.html" class="selected">Home</a></li>
-            <li><a href="products.html">Products</a>
-                <ul>
-                    <li><a href="#">Sub menu 1</a></li>
-                    <li><a href="#">Sub menu 2</a></li>
-                    <li><a href="#">Sub menu 3</a></li>
-              </ul>
-            </li>
-            <li><a href="about.html">About</a>
-                <ul>
-                    <li><a href="#">Sub menu 1</a></li>
-                    <li><a href="#">Sub menu 2</a></li>
-                    <li><a href="#">Sub menu 3</a></li>
-                    <li><a href="#">Sub menu 4</a></li>
-                    <li><a href="#">Sub menu 5</a></li>
-              </ul>
-            </li>
-            <li><a href="faqs.html">FAQs</a></li>
-            <li><a href="checkout.html">Checkout</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <br style="clear: left" />
+        {% include "includes/mainmenu.html"%}
     </div> <!-- end of templatemo_menu -->
     
     <div id="templatemo_middle">

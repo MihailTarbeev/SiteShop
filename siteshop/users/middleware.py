@@ -2,13 +2,15 @@ from django.utils.deprecation import MiddlewareMixin
 from .models import Session, User
 from datetime import datetime
 from django.utils import timezone
+from django.contrib.auth.models import AnonymousUser
+from django.contrib.auth import get_user
 
 
 class AuthMiddleware(MiddlewareMixin):
     def process_request(self, request):
-        # Получаем сессию из куки
         session_key = request.COOKIES.get('sessionid')
-        request.user = None
+        request.user = get_user(request)
+        request.session = None
 
         if session_key:
             try:
@@ -17,9 +19,11 @@ class AuthMiddleware(MiddlewareMixin):
                     is_active=True
                 )
 
-                # Проверяем не истекла ли сессия
                 if timezone.now() < session.expires_at:
                     request.user = session.user
                     request.session = session
+                else:
+                    session.is_active = False
+                    session.save()
             except Session.DoesNotExist:
                 pass

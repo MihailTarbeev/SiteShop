@@ -1,12 +1,13 @@
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.views import View
-from django.http import JsonResponse
-from django.views.generic import CreateView
-from .forms import RegisterUserForm, LoginForm
+from django.views.generic import CreateView, UpdateView
+
+from siteshop import settings
+from .forms import ProfileUserForm, RegisterUserForm, LoginForm
 from .models import User, Session
-from datetime import datetime
-import json
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import get_user_model
 
 
 class RegisterUser(CreateView):
@@ -19,10 +20,12 @@ class RegisterUser(CreateView):
 class LoginView(View):
     def get(self, request):
         form = LoginForm()
-        return render(request, 'users/login.html', {'form': form})
+        next_url = request.GET.get('next', '')
+        return render(request, 'users/login.html', {'form': form, "next": next_url})
 
     def post(self, request):
         form = LoginForm(request.POST)
+
         if form.is_valid():
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
@@ -32,21 +35,21 @@ class LoginView(View):
             except User.DoesNotExist:
                 return render(request, 'users/login.html', {
                     'form': form,
-                    'error': 'Неверный email или пароль'
+                    'error': 'Неверный email или пароль',
+                    'next': request.POST.get('next', '')
                 })
 
             if user.check_password(password):
-                # Создаем сессию
                 session_key = Session.create_session(user)
-
-                # Устанавливаем куки
-                response = redirect('/')
+                next_url = request.POST.get('next')
+                redirect_url = next_url if next_url else '/'
+                response = redirect(redirect_url)
                 response.set_cookie(
                     'sessionid',
                     session_key,
-                    max_age=7*24*60*60,  # 7 дней
+                    max_age=7*24*60*60,
                     httponly=True,
-                    secure=False  # True в production с HTTPS
+                    secure=True
                 )
                 return response
 
@@ -70,3 +73,17 @@ class LogoutView(View):
         response = redirect('/users/login/')
         response.delete_cookie('sessionid')
         return response
+
+
+class ProfileUser(LoginRequiredMixin, UpdateView):
+    model = get_user_model()
+    form_class = ProfileUserForm
+    template_name = "users/profile.html"
+    extra_context = {"title": "Профиль пользователя",
+                     "default_image": settings.DEFAULT_USER_IMAGE}
+
+    def get_success_url(self):
+        return reverse_lazy("users:profile")
+
+    def get_object(self, queryset=None):
+        return self.request.user

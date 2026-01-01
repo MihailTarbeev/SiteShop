@@ -13,6 +13,9 @@ class User(AbstractUser):
     patronymic = models.CharField(
         max_length=50, blank=True, null=True, verbose_name="Отчество")
 
+    photo = models.ImageField(
+        upload_to="users/%Y/%m/%d/", blank=True, null=True, verbose_name="Фото")
+
     def set_password(self, raw_password):
         self.password = bcrypt.hashpw(
             raw_password.encode('utf-8'),
@@ -34,7 +37,6 @@ class User(AbstractUser):
 
     def soft_delete(self):
         self.is_active = False
-        # self.deleted_at = datetime.now()
         self.save()
 
 
