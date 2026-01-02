@@ -8,6 +8,7 @@ import bcrypt
 from django.utils import timezone
 from django.contrib.auth.hashers import check_password as django_check_password
 from django.contrib.auth.models import BaseUserManager
+from .validators import RussianValidator
 
 
 class UserManager(BaseUserManager):
@@ -46,11 +47,13 @@ class User(AbstractUser):
         verbose_name='UUID идентификатор'
     )
     patronymic = models.CharField(
-        max_length=150, blank=True, null=True, verbose_name="Отчество")
+        max_length=150, blank=True, null=True, validators=[RussianValidator(),], verbose_name="Отчество")
     photo = models.ImageField(
         upload_to="users/%Y/%m/%d/", blank=True, null=True, verbose_name="Фото")
-    first_name = models.CharField(max_length=150, verbose_name="Имя")
-    last_name = models.CharField(max_length=150, verbose_name="Фамилия")
+    first_name = models.CharField(
+        max_length=150, validators=[RussianValidator(),], verbose_name="Имя")
+    last_name = models.CharField(
+        max_length=150, validators=[RussianValidator(),], verbose_name="Фамилия")
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
