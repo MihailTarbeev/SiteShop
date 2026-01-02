@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import timedelta
 import uuid
 import bcrypt
 from django.db import models
@@ -7,14 +7,55 @@ import secrets
 import bcrypt
 from django.utils import timezone
 from django.contrib.auth.hashers import check_password as django_check_password
+from django.contrib.auth.models import BaseUserManager
+
+
+class UserManager(BaseUserManager):
+    def create_user(self, email, password=None, **extra_fields):
+        if not email:
+            raise ValueError('Email обязателен')
+
+        # Проверяем обязательные поля
+        if 'first_name' not in extra_fields:
+            raise ValueError('Имя обязательно')
+        if 'last_name' not in extra_fields:
+            raise ValueError('Фамилия обязательна')
+
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+
+        if password:
+            user.set_password(password)
+        else:
+            user.set_unusable_password()
+
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        return self.create_user(email, password, **extra_fields)
 
 
 class User(AbstractUser):
+    email = models.EmailField(unique=True, verbose_name='Email')
+    username = models.UUIDField(
+        unique=True,
+        default=uuid.uuid4,
+        verbose_name='UUID идентификатор'
+    )
     patronymic = models.CharField(
-        max_length=50, blank=True, null=True, verbose_name="Отчество")
-
+        max_length=150, blank=True, null=True, verbose_name="Отчество")
     photo = models.ImageField(
         upload_to="users/%Y/%m/%d/", blank=True, null=True, verbose_name="Фото")
+    first_name = models.CharField(max_length=150, verbose_name="Имя")
+    last_name = models.CharField(max_length=150, verbose_name="Фамилия")
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['first_name', 'last_name']
+
+    objects = UserManager()
 
     def set_password(self, raw_password):
         self.password = bcrypt.hashpw(

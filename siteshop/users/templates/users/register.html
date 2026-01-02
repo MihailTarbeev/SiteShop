@@ -4,8 +4,17 @@
 <h1>Регистрация</h1>
 <form method="post">
 {% csrf_token %}
-<input type="hidden" name="next" value="{{ next }}">
-{{ form.as_p }}
+            <input type="hidden" name="next" value="{{ next }}">
+          <ol>
+          <div class="form-error">{{ form.non_field_errors }}</div>
+              {% for f in form %}
+              <li>
+                <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+                {{ f }}
+                <div class="form-error" style="color:red">{{ f.errors }}</div>
+                <br>
+              </li>
+              {% endfor %}
 
 <p><button type="submit">Регистрация</button></p>
 

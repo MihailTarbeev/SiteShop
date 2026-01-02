@@ -6,8 +6,6 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 class RegisterUserForm(UserCreationForm):
-    username = forms.CharField(
-        label="Логин", widget=forms.TextInput())
     password1 = forms.CharField(
         label="Пароль", widget=forms.PasswordInput())
     password2 = forms.CharField(
@@ -15,7 +13,7 @@ class RegisterUserForm(UserCreationForm):
 
     class Meta:
         model = get_user_model()
-        fields = ["username", "email", "first_name",
+        fields = ["email", "first_name",
                   "last_name", "patronymic", "password1", "password2"]
         labels = {
             "email": "E-mail",
