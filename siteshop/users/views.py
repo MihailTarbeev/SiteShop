@@ -1,13 +1,14 @@
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.views import View
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, DeleteView
 
 from siteshop import settings
 from .forms import ProfileUserForm, RegisterUserForm, LoginForm
 from .models import User, Session
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
+from django.contrib import messages
 
 
 class RegisterUser(CreateView):
@@ -87,3 +88,20 @@ class ProfileUser(LoginRequiredMixin, UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
+
+class DeleteUser(LoginRequiredMixin, View):
+    def get(self, request):
+        return render(request, 'users/delete_confirm.html', {
+            'title': 'Удаление аккаунта'
+        })
+
+    def post(self, request):
+        user = request.user
+        user.soft_delete()
+        Session.objects.filter(
+            user=user, is_active=True).update(is_active=False)
+        response = redirect('home')
+        response.delete_cookie('sessionid')
+        messages.success(request, 'Ваш аккаунт был успешно удалён.')
+        return response

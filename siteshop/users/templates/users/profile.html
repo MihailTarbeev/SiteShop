@@ -30,7 +30,10 @@
 
             </ol>
             <hr>
+            <button><a href="">Сменить пароль</a></button>
             {% comment %} <p><a href="{% url 'users:password_change' %}">Сменить пароль</a></p> {% endcomment %}
+
+            <button><a href={% url "users:delete_user" %}>Удалить аккаунт</a></button>
           </form>
 
 
