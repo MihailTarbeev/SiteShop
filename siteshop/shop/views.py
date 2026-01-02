@@ -8,7 +8,7 @@ import json
 
 def home(request):
     """Простая домашняя страница для тестирования"""
-    return render(request, 'shop/index.html')
+    return render(request, 'shop/index.html', context={"title": "Главная страница"})
 
 
 # def register(request):

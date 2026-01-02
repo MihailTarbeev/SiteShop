@@ -27,6 +27,17 @@ class RegisterUserForm(UserCreationForm):
             raise forms.ValidationError("Этот E-mail уже зарегистрирован")
         return email
 
+    def save(self, commit=True):
+        User = get_user_model()
+        user = User.objects.create_user(
+            email=self.cleaned_data['email'],
+            password=self.cleaned_data['password1'],
+            first_name=self.cleaned_data['first_name'],
+            last_name=self.cleaned_data['last_name'],
+            patronymic=self.cleaned_data.get('patronymic', ''),
+        )
+        return user
+
 
 class LoginForm(forms.Form):
     email = forms.EmailField(label='Email')

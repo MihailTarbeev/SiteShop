@@ -11,18 +11,61 @@ from django.contrib.auth.models import BaseUserManager
 from .validators import RussianValidator
 
 
+class Role(models.Model):
+    """Таблица ролей"""
+    name = models.CharField(max_length=50, unique=True,
+                            verbose_name="Название роли")
+    description = models.TextField(blank=True, verbose_name="Описание")
+
+
+class BusinessElement(models.Model):
+    """Таблица бизнес-объектов"""
+    name = models.CharField(max_length=100, unique=True,
+                            verbose_name="Название объекта")
+    description = models.TextField(blank=True, verbose_name="Описание")
+
+
+class AccessRoleRule(models.Model):
+    """Таблица правил доступа ролей к объектам"""
+    role = models.ForeignKey(Role, on_delete=models.CASCADE,
+                             related_name='access_rules', verbose_name="Роль")
+    element = models.ForeignKey(BusinessElement, on_delete=models.CASCADE,
+                                related_name='access_rules', verbose_name="Бизнес-объект")
+
+    read_permission = models.BooleanField(
+        default=False, verbose_name="Чтение своих")
+    read_all_permission = models.BooleanField(
+        default=False, verbose_name="Чтение всех")
+    create_permission = models.BooleanField(
+        default=False, verbose_name="Создание")
+    update_permission = models.BooleanField(
+        default=False, verbose_name="Обновление своих")
+    update_all_permission = models.BooleanField(
+        default=False, verbose_name="Обновление всех")
+    delete_permission = models.BooleanField(
+        default=False, verbose_name="Удаление своих")
+    delete_all_permission = models.BooleanField(
+        default=False, verbose_name="Удаление всех")
+
+
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
             raise ValueError('Email обязателен')
-
-        # Проверяем обязательные поля
         if 'first_name' not in extra_fields:
             raise ValueError('Имя обязательно')
         if 'last_name' not in extra_fields:
             raise ValueError('Фамилия обязательна')
 
         email = self.normalize_email(email)
+
+        if 'role' not in extra_fields:
+            user_role, created = Role.objects.get_or_create(
+                name='User',
+                defaults={'description': 'Обычный пользователь'}
+            )
+            extra_fields['role'] = user_role
+
         user = self.model(email=email, **extra_fields)
 
         if password:
@@ -34,8 +77,15 @@ class UserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, password=None, **extra_fields):
+        admin_role, created = Role.objects.get_or_create(
+            name='Admin',
+            defaults={'description': 'Полный доступ ко всему'}
+        )
+
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('role', admin_role)
+
         return self.create_user(email, password, **extra_fields)
 
 
@@ -54,6 +104,12 @@ class User(AbstractUser):
         max_length=150, validators=[RussianValidator(),], verbose_name="Имя")
     last_name = models.CharField(
         max_length=150, validators=[RussianValidator(),], verbose_name="Фамилия")
+    role = models.ForeignKey(
+        Role,
+        on_delete=models.PROTECT,
+        verbose_name="Роль",
+        related_name='users'
+    )
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']

@@ -66,19 +66,19 @@ ddsmoothmenu.init({
     	<div id="site_title"><h1><a href="http://www.templatemo.com">Free CSS Templates</a></h1></div>
         
         <div id="header_right">
-            <ul id="language">
+            {% comment %} <ul id="language">
                 <li><a><img src="{% static 'shop/images/usa.png' %}" alt="English" /></a></li>
                 <li><a><img src="{% static 'shop/images/china.png' %}" alt="Chinese" /></a></li>
                 <li><a><img src="{% static 'shop/images/germany.png' %}" alt="Germany" /></a></li>
                 <li><a><img src="{% static 'shop/images/india.png' %}" alt="Indian" /></a></li>
-            </ul>
+            </ul> {% endcomment %}
             <div class="cleaner"></div>
-            <div id="templatemo_search">
+            {% comment %} <div id="templatemo_search">
                 <form action="#" method="get">
                   <input type="text" value="Search" name="keyword" id="keyword" title="keyword" onfocus="clearText(this)" onblur="clearText(this)" class="txt_field" />
                   <input type="submit" name="Search" value="" alt="Search" id="searchbutton" title="Search" class="sub_btn"  />
                 </form>
-            </div>
+            </div> {% endcomment %}
          </div> <!-- END -->
     </div> <!-- END of header -->
     
