@@ -17,12 +17,26 @@ class Role(models.Model):
                             verbose_name="Название роли")
     description = models.TextField(blank=True, verbose_name="Описание")
 
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Роль"
+        verbose_name_plural = "Роли"
+
 
 class BusinessElement(models.Model):
     """Таблица бизнес-объектов"""
     name = models.CharField(max_length=100, unique=True,
                             verbose_name="Название объекта")
     description = models.TextField(blank=True, verbose_name="Описание")
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Бизнес-объект"
+        verbose_name_plural = "Бизнес-объекты"
 
 
 class AccessRoleRule(models.Model):
@@ -46,6 +60,10 @@ class AccessRoleRule(models.Model):
         default=False, verbose_name="Удаление своих")
     delete_all_permission = models.BooleanField(
         default=False, verbose_name="Удаление всех")
+
+    class Meta:
+        verbose_name = "Правило-доступа"
+        verbose_name_plural = "Правила-доступа"
 
 
 class UserManager(BaseUserManager):
@@ -139,6 +157,10 @@ class User(AbstractUser):
         self.is_active = False
         self.save()
 
+    class Meta:
+        verbose_name = "Пользователь"
+        verbose_name_plural = "Пользователи"
+
 
 class Session(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -162,3 +184,7 @@ class Session(models.Model):
 
     def is_valid(self):
         return self.is_active and timezone.now() < self.expires_at
+
+    class Meta:
+        verbose_name = "Сессия"
+        verbose_name_plural = "Сессии"
