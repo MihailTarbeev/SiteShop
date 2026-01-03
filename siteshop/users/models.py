@@ -157,6 +157,19 @@ class User(AbstractUser):
         self.is_active = False
         self.save()
 
+    def save(self, *args, **kwargs):
+        admin_role_exists = Role.objects.filter(name='Admin').exists()
+
+        if admin_role_exists:
+            if self.role and self.role.name == 'Admin':
+                self.is_superuser = True
+                self.is_staff = True
+            else:
+                self.is_superuser = False
+                self.is_staff = False
+
+        super().save(*args, **kwargs)
+
     class Meta:
         verbose_name = "Пользователь"
         verbose_name_plural = "Пользователи"

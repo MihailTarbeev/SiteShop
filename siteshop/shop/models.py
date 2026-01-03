@@ -5,6 +5,11 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 
 
+class PublishedManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_available=True)
+
+
 class Item(models.Model):
     """Модель товара"""
     name = models.CharField(
@@ -58,9 +63,13 @@ class Item(models.Model):
         verbose_name="URL",
     )
 
+    objects = models.Manager()
+    published = PublishedManager()
+
     class Meta:
         verbose_name = "Товар"
         verbose_name_plural = "Товары"
+        ordering = ["-name"]
 
     def get_absolute_url(self):
         return reverse("item", kwargs={"item_slug": self.slug})

@@ -3,14 +3,18 @@
 
 {% block "content" %}
 
+<div style="margin: auto; display: flex; flex-direction: column; align-items: center;">
 {% if item.image %}
-<div class="col col_1 product_gallery">
 <a><img src={{ item.image.url }} height="150"/></a>
+{% else %}
+<a><img src={{ default_image }} height="150"/></a>
 {% endif %}
 <h2 style="color: blue">{{ item.name }}</h2>
 <p>{{ item.description }}</p>
 <p><strong>Продавец:</strong> {{ item.owner.first_name }}</p>
 <p class="product_price">{{ item.price }} ₽</p>
+
+<p><button><a href="{% url "edit_item" item.slug %}">Изменить</button></p>
 </div>
 {% endblock %}
 

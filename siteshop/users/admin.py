@@ -45,6 +45,7 @@ class SessionAdmin(admin.ModelAdmin):
         return obj.is_valid()
 
 
+@admin.register(User)
 class UserAdmin(BaseUserAdmin):
     list_display = (
         'username', 'email', 'first_name', 'last_name', 'patronymic',
@@ -57,9 +58,25 @@ class UserAdmin(BaseUserAdmin):
     def get_queryset(self, request):
         return super().get_queryset(request).select_related('role')
 
+    fieldsets = (
+        (None, {'fields': ('email', 'password')}),
+        (_('Personal info'), {
+         'fields': ('first_name', 'last_name', 'patronymic', 'photo')}),
+        (_('Permissions'), {'fields': ('is_active', 'is_staff',
+         'is_superuser', 'role', 'groups', 'user_permissions')}),
+        (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
+    )
+
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('email', 'first_name', 'last_name', 'patronymic', 'role', 'password1', 'password2'),
+        }),
+    )
+
     @admin.display(description="Роль")
     def role_name(self, obj):
         return obj.role.name if obj.role else '-'
 
 
-admin.site.register(User, UserAdmin)
+# admin.site.register(User, UserAdmin)

@@ -128,6 +128,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "users.User"
 
 DEFAULT_USER_IMAGE = MEDIA_URL + "users/default.png"
+DEFAULT_ITEM_IMAGE = MEDIA_URL + "shop/default.png"
 
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"

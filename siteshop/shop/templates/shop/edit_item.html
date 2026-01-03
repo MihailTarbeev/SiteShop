@@ -1,0 +1,33 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block "content" %} 
+          <h2><span>Редактирование</span> товара</h2>
+
+          <h3>{{ item.name }}</h3>
+
+          {% if item.image %}
+          <a><img src={{ item.image.url }} height="150"/></a>
+          {% else %}
+          <a><img src={{ default_image }} height="150"/></a>
+          {% endif %}
+
+
+          <form action="" method="POST" id="sendemail" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <p><button type="submit">Изменить</button></p>
+
+            {% comment %} <ol>
+              <div class="form-error">{{ form.non_field_errors }}</div>
+              {% for f in form %}
+              <li>
+                <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+                {{ f }}
+                <div class="form-error">{{ f.errors }}</div>
+              </li>
+              {% endfor %} {% endcomment %}
+
+{% endblock %}

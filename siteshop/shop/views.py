@@ -1,5 +1,8 @@
 from django.shortcuts import get_object_or_404, render
-from django.views.generic import ListView, DetailView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, UpdateView
+
+from siteshop import settings
 from .models import Item
 
 
@@ -7,10 +10,11 @@ class PeopleHome(ListView):
     model = Item
     template_name = "shop/index.html"
     context_object_name = "items"
-    extra_context = {"title": "Главная страница", "category_selected": 0}
+    extra_context = {"title": "Главная страница", "category_selected": 0,
+                     "default_image": settings.DEFAULT_ITEM_IMAGE}
 
     def get_queryset(self):
-        return Item.objects.all().select_related("category")
+        return Item.published.all().select_related("category")
 
 
 class ShopCategory(ListView):
@@ -19,13 +23,14 @@ class ShopCategory(ListView):
     allow_empty = False
 
     def get_queryset(self):
-        return Item.objects.filter(category__slug=self.kwargs["cat_slug"]).select_related("category")
+        return Item.published.filter(category__slug=self.kwargs["cat_slug"]).select_related("category")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         category = context["items"][0].category
         context['category_selected'] = category.pk
         context['title'] = "Категория - " + category.name
+        context['default_image'] = settings.DEFAULT_ITEM_IMAGE
         return context
 
 
@@ -38,7 +43,17 @@ class ShowItem(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = context["item"].name
+        context['default_image'] = settings.DEFAULT_ITEM_IMAGE
         return context
 
     def get_object(self, queryset=None):
-        return get_object_or_404(Item, slug=self.kwargs[self.slug_url_kwarg])
+        return get_object_or_404(Item, slug=self.kwargs[self.slug_url_kwarg], is_available=True)
+
+
+class UpdatePage(UpdateView):
+    model = Item
+    fields = ["image", "name", "price", "description",
+              "is_available", "category", "slug"]
+    template_name = 'shop/edit_item.html'
+    title_page = "Редактирование товара"
+    context_object_name = "item"
