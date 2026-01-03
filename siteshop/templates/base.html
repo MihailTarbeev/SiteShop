@@ -64,7 +64,7 @@ ddsmoothmenu.init({
 
 <div id="templatemo_wrapper">
 	<div id="templatemo_header">
-    	<div id="site_title"><h1><a href="http://www.templatemo.com">Free CSS Templates</a></h1></div>
+    	<div id="site_title"><h1><a href="{% url "home" %}">Магазин всего</a></h1></div>
         
         <div id="header_right">
             {% comment %} <ul id="language">
@@ -88,51 +88,18 @@ ddsmoothmenu.init({
     </div> <!-- end of templatemo_menu -->
     
     <div id="templatemo_middle">
-    	<img src="{% static 'shop/images/templatemo_image_01.png' %}" alt="Image 01" />
-    	<h1>Introducing Web Store</h1>
-        <p><a href="http://www.templatemo.com" target="_parent">Web Store</a> is a free css template for your personal or commercial websites. Feel free to download, edit and use this template for any purpose.</p>
-        <a href="#" class="buy_now">Browse All Products</a>
+    	<img src="{% static 'shop/images/new_year.png' %}" width=450/>
+    	<h1>Магазин всего</h1>
+        <p><strong>Приветствует!</strong> Здесь вы можете посмотреть товары различных категорий!</p>
+        {% comment %} <a href="#" class="buy_now">Browse All Products</a> {% endcomment %}
     </div> <!-- END of middle -->
     
 
-    <<div id="templatemo_main">
+    <div id="templatemo_main">
     	<div id="product_slider">
 
-            {% block "menu_products" %}
-    		<div id="SlideItMoo_outer">	
-                <div id="SlideItMoo_inner">			
-                    <div id="SlideItMoo_items">
-                        <div class="SlideItMoo_element">
-                                <a href="http://www.templatemo.com/page/1" target="_parent">
-                                <img src="{% static 'shop/images/gallery/01.jpg' %}" alt="product 1" /></a>
-                        </div>	
-                        <div class="SlideItMoo_element">
-                                <a href="http://www.templatemo.com/page/2" target="_parent">
-                                <img src="{% static 'shop/images/gallery/02.jpg' %}" alt="product 2" /></a>
-                        </div>
-                        <div class="SlideItMoo_element">
-                                <a href="http://www.templatemo.com/page/3" target="_parent">
-                                 <img src="{% static 'shop/images/gallery/03.jpg' %}" alt="product 3" /></a>
-                        </div>
-                        <div class="SlideItMoo_element">
-                                <a href="http://www.templatemo.com/page/4" target="_parent">
-                                <img src="{% static 'shop/images/gallery/04.jpg' %}" alt="product 4" /></a>
-                        </div>
-                        <div class="SlideItMoo_element">
-                                <a href="http://www.templatemo.com/page/5" target="_parent">
-                               <img src="{% static 'shop/images/gallery/05.jpg' %}" alt="product 5" /></a>
-                        </div>
-                        <div class="SlideItMoo_element">
-                                <a href="http://www.templatemo.com/page/6" target="_parent">
-                                <img src="{% static 'shop/images/gallery/06.jpg' %}" alt="product 6" /></a>
-                        </div>
-                        <div class="SlideItMoo_element">
-                                <a href="http://www.templatemo.com/page/6" target="_parent">
-                                <img src="{% static 'shop/images/gallery/07.jpg' %}" alt="product 7" /></a>
-                        </div>
-                    </div>			
-                </div>
-            </div>
+            {% block menu_products %}
+    		
             {% endblock %}
 
             <div class="cleaner"></div>
@@ -144,7 +111,7 @@ ddsmoothmenu.init({
             {% show_categories category_selected %}
 
             {% endblock %}
-        </div> <!-- END of sidebar -->
+        </div>
         
         <div id="content">
 

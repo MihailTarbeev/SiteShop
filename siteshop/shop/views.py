@@ -1,11 +1,6 @@
-from django.shortcuts import render
-from django.views.generic import ListView
+from django.shortcuts import get_object_or_404, render
+from django.views.generic import ListView, DetailView
 from .models import Item
-
-
-def home(request):
-    """Простая домашняя страница для тестирования"""
-    return render(request, 'shop/index.html', context={"title": "Главная страница"})
 
 
 class PeopleHome(ListView):
@@ -32,3 +27,18 @@ class ShopCategory(ListView):
         context['category_selected'] = category.pk
         context['title'] = "Категория - " + category.name
         return context
+
+
+class ShowItem(DetailView):
+    model = Item
+    template_name = 'shop/item.html'
+    slug_url_kwarg = "item_slug"
+    context_object_name = "item"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = context["item"].name
+        return context
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(Item, slug=self.kwargs[self.slug_url_kwarg])

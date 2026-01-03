@@ -52,9 +52,18 @@ class Item(models.Model):
     category = models.ForeignKey(
         'Category', on_delete=models.SET_NULL, null=True, related_name="items", verbose_name="Категория")
 
+    slug = models.SlugField(
+        max_length=100,
+        unique=True,
+        verbose_name="URL",
+    )
+
     class Meta:
         verbose_name = "Товар"
         verbose_name_plural = "Товары"
+
+    def get_absolute_url(self):
+        return reverse("item", kwargs={"item_slug": self.slug})
 
 
 class Category(models.Model):
@@ -68,8 +77,7 @@ class Category(models.Model):
     slug = models.SlugField(
         max_length=100,
         unique=True,
-        verbose_name="URL-идентификатор",
-        help_text="Автоматически генерируется из названия"
+        verbose_name="URL"
     )
 
     class Meta:

@@ -5,11 +5,11 @@
             <li><a href="{% url "home" %}">Главная</a></li>
             {% endif %}
 
-            {% if title == "Товары" %}
+            {% comment %} {% if title == "Товары" %}
             <li><a class="selected">Товары</a></li>
             {% else %}
             <li><a href="">Товары</a></li>
-            {% endif %}
+            {% endif %} {% endcomment %}
                 {% comment %} <ul>
                     <li><a href="#">Sub menu 1</a></li>
                     <li><a href="#">Sub menu 2</a></li>
@@ -30,7 +30,7 @@
             <li><a href="contact.html">Contact</a></li> {% endcomment %}
             {% if user.is_authenticated %}
 
-                {% if title == "Профиль" %}
+                {% if title == "Профиль пользователя" %}
                 <li><a class="selected">Профиль | {{ user.first_name }}</a></li>
                 {% else %}
                 <li><a href="{% url "users:profile" %}">Профиль | {{ user.first_name }}</a></li>

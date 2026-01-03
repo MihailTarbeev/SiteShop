@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block "content" %}
+
+{% if item.image %}
+<div class="col col_1 product_gallery">
+<a><img src={{ item.image.url }} height="150"/></a>
+{% endif %}
+<h2 style="color: blue">{{ item.name }}</h2>
+<p>{{ item.description }}</p>
+<p><strong>Продавец:</strong> {{ item.owner.first_name }}</p>
+<p class="product_price">{{ item.price }} ₽</p>
+</div>
+{% endblock %}
+
