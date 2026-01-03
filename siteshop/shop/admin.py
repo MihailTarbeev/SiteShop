@@ -1,3 +1,15 @@
 from django.contrib import admin
+from .models import Item, Category
 
-# Register your models here.
+
+@admin.register(Item)
+class ItemAdmin(admin.ModelAdmin):
+    list_display = ('name', 'price', 'owner',
+                    'is_available', 'created_at', 'category')
+    ordering = ('created_at',)
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'slug')
+    ordering = ('id',)
