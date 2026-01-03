@@ -9,21 +9,22 @@ from django.contrib.auth import get_user
 class AuthMiddleware(MiddlewareMixin):
     def process_request(self, request):
         session_key = request.COOKIES.get('sessionid')
-        request.user = get_user(request)
-        request.session = None
+        request.custom_session = None
 
         if session_key:
             try:
-                session = Session.objects.get(
+                custom_session = Session.objects.get(
                     session_key=session_key,
                     is_active=True
                 )
 
-                if timezone.now() < session.expires_at:
-                    request.user = session.user
-                    request.session = session
+                if timezone.now() < custom_session.expires_at:
+                    request.custom_session = custom_session
+                    request.user = custom_session.user
                 else:
-                    session.is_active = False
-                    session.save()
+                    custom_session.is_active = False
+                    custom_session.save()
             except Session.DoesNotExist:
                 pass
+        else:
+            request.user = get_user(request)
