@@ -1,6 +1,6 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, UpdateView
+from django.views.generic import ListView, DetailView, UpdateView, CreateView
 
 from siteshop import settings
 from .models import Item
@@ -50,10 +50,23 @@ class ShowItem(DetailView):
         return get_object_or_404(Item, slug=self.kwargs[self.slug_url_kwarg], is_available=True)
 
 
-class UpdatePage(UpdateView):
+class UpdateItem(UpdateView):
     model = Item
     fields = ["image", "name", "price", "description",
               "is_available", "category", "slug"]
     template_name = 'shop/edit_item.html'
-    title_page = "Редактирование товара"
+    extra_context = {"title": "Редактирование"}
     context_object_name = "item"
+
+
+class AddItem(CreateView):
+    model = Item
+    fields = ["image", "name", "price", "description",
+              "is_available", "category", "slug"]
+    template_name = 'shop/addpage.html'
+    extra_context = {"title": 'Добавить товар'}
+
+    def form_valid(self, form):
+        w = form.save(commit=False)
+        w.owner = self.request.user
+        return super().form_valid(form)

@@ -10,7 +10,13 @@
 <a><img src={{ default_image }} height="150"/></a>
 {% endif %}
 <h2 style="color: blue">{{ item.name }}</h2>
-<p>{{ item.description }}</p>
+<p style="
+    word-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+    max-width: 100%;
+    line-height: 1.5;
+">{{ item.description }}</p>
 <p><strong>Продавец:</strong> {{ item.owner.first_name }}</p>
 <p class="product_price">{{ item.price }} ₽</p>
 

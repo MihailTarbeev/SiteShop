@@ -83,7 +83,9 @@ class ProfileUser(MultiPermissionMixin, UpdateView):
     form_class = ProfileUserForm
     template_name = "users/profile.html"
     extra_context = {"title": "Профиль пользователя",
-                     "default_image": settings.DEFAULT_USER_IMAGE}
+                     "default_user_image": settings.DEFAULT_USER_IMAGE,
+                     "default_item_image": settings.DEFAULT_ITEM_IMAGE
+                     }
 
     def get_success_url(self):
         return reverse_lazy("users:profile")

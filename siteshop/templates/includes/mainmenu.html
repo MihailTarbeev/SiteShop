@@ -30,6 +30,13 @@
             <li><a href="contact.html">Contact</a></li> {% endcomment %}
             {% if user.is_authenticated %}
 
+                {% if title == "Добавить товар" %}
+                <li><a class="selected">Добавить товар</a></li>
+                {% else %}
+                <li><a href="{% url "add_item" %}">Добавить товар</a></li>
+                {% endif %}
+
+
                 {% if title == "Профиль пользователя" %}
                 <li><a class="selected">Профиль | {{ user.first_name }}</a></li>
                 {% else %}

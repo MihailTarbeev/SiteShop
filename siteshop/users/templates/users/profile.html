@@ -9,7 +9,7 @@
             {% if user.photo %}
             <div class="img"><img src="{{ user.photo.url }}" width="198" alt="" class="fl" /></div>
             {% else %}
-            <div class="img"><img src="{{ default_image }}" width="198" alt="" class="fl" /></div>
+            <div class="img"><img src="{{ default_user_image }}" width="198" alt="" class="fl" /></div>
             {% endif %}
 
             <input type="hidden" name="next" value="{{ next }}">
@@ -34,7 +34,66 @@
             {% comment %} <p><a href="{% url 'users:password_change' %}">Сменить пароль</a></p> {% endcomment %}
 
             <button><a href={% url "users:delete_user" %}>Удалить аккаунт</a></button>
-          </form>
+            <hr>
+            {% if object.items.all.count > 0 %}
+              <h3><span>Ваши товары</span></h3> 
 
+              <div style="
+                  display: flex;
+                  flex-wrap: wrap;
+                  gap: 20px;
+                  justify-content: flex-start;
+              ">
+                  {% for item in object.items.all %}
+                  <div class="col col_14 product_gallery" style="
+                      width: calc(25% - 15px); 
+                      min-width: 100px; /* Минимальная ширина */
+                      text-align: center;
+                      padding: 15px;
+                      border: 1px solid #eee;
+                      border-radius: 8px;
+                      background: white;
+                      display: flex;
+                      flex-direction: column;
+                      box-sizing: border-box;
+                      min-height: 200px;
+                  ">
+                      
+                      {% if item.image %}
+                      <a href="{{ item.get_absolute_url }}">
+                          <img src="{{ item.image.url }}" style="width: 100%; height: 100px; object-fit: contain;"/>
+                      </a>
+                      {% else %}
+                      <a href="{{ item.get_absolute_url }}">
+                          <img src="{{ default_item_image }}" style="width: 100%; height: 100px; object-fit: contain;"/>
+                      </a>
+                      {% endif %}
+
+                      <div style="flex: 1; width: 100%; padding-top: 10px;">
+                          <h2 style="margin: 0 0 8px; min-height: 40px;">
+                              <a href="{{ item.get_absolute_url }}" style="color: blue; font-size: 15px; text-decoration: none; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                                  {{ item.name }}
+                              </a>
+                          </h2>
+                          
+                          <p style="margin: 8px 0; color: #666; line-height: 1.4; font-size: 13px; min-height: 50px; max-height: 70px; overflow: hidden;">
+                              {{ item.description|truncatechars:45 }}
+                          </p>
+                      </div>
+
+                      <div style="width: 100%; margin-top: auto;">
+                          <p class="product_price" style="font-size: 16px; font-weight: bold; color: #d32f2f; margin: 10px 0;">
+                              {{ item.price }} ₽
+                          </p>
+                      </div>
+                  </div>
+                  {% endfor %}
+              </div>
+
+            {% else %}
+              <h3><span>Вы пока не добавили ни один товар</span></h3>
+            {% endif %}
+
+          </form>
 
 {% endblock %}
