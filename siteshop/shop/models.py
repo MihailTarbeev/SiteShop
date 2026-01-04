@@ -3,6 +3,7 @@ from django.conf import settings
 from django.core.validators import MinValueValidator
 from django.contrib.auth import get_user_model
 from django.urls import reverse
+from users.validators import RussianValidator
 
 
 class PublishedManager(models.Manager):
@@ -14,7 +15,7 @@ class Item(models.Model):
     """Модель товара"""
     name = models.CharField(
         max_length=200,
-        verbose_name="Название товара"
+        verbose_name="Название товара", validators=[RussianValidator(),]
     )
 
     price = models.DecimalField(
