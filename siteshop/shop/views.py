@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, UpdateView, CreateView
+from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView
 
 from siteshop import settings
 from .models import Item
@@ -71,3 +71,11 @@ class AddItem(CreateView):
         w = form.save(commit=False)
         w.owner = self.request.user
         return super().form_valid(form)
+
+
+class DeletePage(DeleteView):
+    model = Item
+    context_object_name = "item"
+    success_url = reverse_lazy("home")
+    extra_context = {"title": "Удаление товара",
+                     'default_image': settings.DEFAULT_ITEM_IMAGE}
