@@ -5,8 +5,6 @@ app_name = 'users'
 
 urlpatterns = [
     path('register/', views.RegisterUser.as_view(), name='register'),
-    path('register/done/', views.RegisterUser.as_view(
-        template_name="users/register_done.html"), name='register_done'),
     path('login/', views.LoginView.as_view(), name='login'),
     path('logout/', views.LogoutView.as_view(), name='logout'),
     path('profile/', views.ProfileUser.as_view(), name='profile'),

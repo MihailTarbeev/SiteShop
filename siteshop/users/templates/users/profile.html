@@ -2,38 +2,146 @@
 {% load static %}
 {% block "content" %}
 
-          <h2><span>Профиль</span></h2>
-          <form action="" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <input type="hidden" name="next" value="{{ next }}">
-            {% if user.photo %}
-            <div class="img"><img src="{{ user.photo.url }}" width="198" alt="" class="fl" /></div>
+  <div class="profile-container">
+  <h2 class="profile-title">Профиль</h2>
+  
+  <div class="profile-card">
+    <form action="" method="POST" enctype="multipart/form-data" class="profile-form">
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ next }}">
+      
+      <div class="avatar-section">
+        <div class="avatar-container">
+          {% if user.photo %}
+          <img src="{{ user.photo.url }}" alt="Аватар" class="avatar-image" />
+          {% else %}
+          <img src="{{ default_user_image }}" alt="Аватар" class="avatar-image" />
+          {% endif %}
+        </div>
+        
+        <div class="photo-upload-wrapper">
+          <label for="id_photo" class="photo-upload-label">
+            <span class="upload-icon">🖼️</span> Изменить фото
+            {{ form.photo }}
+          </label>
+          <div class="form-error photo-error">
+            {{ form.photo.errors }}
+          </div>
+        </div>
+      </div>
+
+        <p>{{ form.non_field_errors }}</p>
+
+
+
+      <!-- Поля формы в цикле -->
+<div class="form-fields-grid">
+    {% for field in form %}
+        {% if field.name != 'photo' %}
+        <div class="form-group {% if field.name == 'username' or field.name == 'email' %}disabled-field{% endif %}">
+            <label for="{{ field.id_for_label }}" class="form-label">
+                {{ field.label }}
+                {% if field.field.required %}
+                    <span class="required-star">*</span>
+                {% endif %}
+                
+                {% if field.field.disabled %}
+                    <span class="disabled-icon" title="Это поле нельзя изменить">🔒</span>
+                {% endif %}
+            </label>
+            
+            {% if field.name == 'email' %}
+                <div class="disabled-input-wrapper">
+                    <input type="email" name="{{ field.name }}" 
+                           id="{{ field.id_for_label }}" 
+                           value="{{ field.value|default_if_none:'' }}"
+                           class="form-input email-input {% if field.field.disabled %}disabled-input{% endif %}"
+                           {% if field.field.disabled %}disabled{% endif %}>
+                    {% if field.field.disabled %}
+                        <div class="disabled-hint">
+                            <small>Email нельзя изменить после регистрации</small>
+                        </div>
+                    {% endif %}
+                </div>
+            {% elif field.name == 'username' %}
+                <div class="disabled-input-wrapper">
+                    <input type="text" name="{{ field.name }}" 
+                           id="{{ field.id_for_label }}" 
+                           value="{{ field.value|default_if_none:'' }}"
+                           class="form-input text-input {% if field.field.disabled %}disabled-input{% endif %}"
+                           {% if field.field.disabled %}disabled{% endif %}>
+                    {% if field.field.disabled %}
+                        <div class="disabled-hint">
+                            <small>Логин нельзя изменить после регистрации</small>
+                        </div>
+                    {% endif %}
+                </div>
+            {% elif field.field.widget.input_type == 'text' %}
+                <input type="text" name="{{ field.name }}" 
+                       id="{{ field.id_for_label }}" 
+                       value="{{ field.value|default_if_none:'' }}"
+                       class="form-input text-input {% if field.field.disabled %}disabled-input{% endif %}"
+                       {% if field.field.disabled %}disabled{% endif %}>
+            {% elif field.field.widget.input_type == 'textarea' %}
+                <textarea name="{{ field.name }}" 
+                          id="{{ field.id_for_label }}" 
+                          class="form-textarea {% if field.field.disabled %}disabled-input{% endif %}"
+                          {% if field.field.disabled %}disabled{% endif %}>{{ field.value|default_if_none:'' }}</textarea>
+            {% elif field.field.widget.input_type == 'select' %}
+                <select name="{{ field.name }}" 
+                        id="{{ field.id_for_label }}"
+                        class="form-select {% if field.field.disabled %}disabled-input{% endif %}"
+                        {% if field.field.disabled %}disabled{% endif %}>
+                    {% for choice in field.field.choices %}
+                        <option value="{{ choice.0 }}" {% if field.value == choice.0 %}selected{% endif %}>
+                            {{ choice.1 }}
+                        </option>
+                    {% endfor %}
+                </select>
+            {% elif field.field.widget.input_type == 'file' %}
+
             {% else %}
-            <div class="img"><img src="{{ default_user_image }}" width="198" alt="" class="fl" /></div>
+                {{ field }}
             {% endif %}
+            
+            {% if field.help_text %}
+                <div class="form-help-text">
+                    {{ field.help_text }}
+                </div>
+            {% endif %}
+            
+            <div class="form-error field-error">
+                {{ field.errors }}
+            </div>
+        </div>
+        {% endif %}
+    {% endfor %}
+</div>
 
-            <input type="hidden" name="next" value="{{ next }}">
-          <ol>
-          <div class="form-error">{{ form.non_field_errors }}</div>
+      <div class="form-submit-section">
+        <button type="submit" class="submit-button">
+          <span class="button-icon">💾</span> Сохранить изменения
+        </button>
+      </div>
+    </form>
 
-            {{ form.as_p }}
-
-              {% comment %} {% for f in form %}
-              <li>
-                <label for="{{ f.id_for_label }}">{{ f.label }}</label>
-                {{ f }}
-                <div class="form-error">{{ f.errors }}</div>
-              </li>
-              {% endfor %} {% endcomment %}
-
-            <p><button type="submit">Сохранить</button></p>
-
-            </ol>
-            <hr>
-            <button><a href="">Сменить пароль</a></button>
-            {% comment %} <p><a href="{% url 'users:password_change' %}">Сменить пароль</a></p> {% endcomment %}
-
-            <button><a href={% url "users:delete_user" %}>Удалить аккаунт</a></button>
+    <hr class="section-divider">
+    
+    <div class="action-buttons">
+      <a href="" class="action-button password-button">
+        <span class="button-icon">🔑</span> Сменить пароль
+      </a>
+      
+      <a href="{% url 'users:logout' %}" class="action-button logout-button">
+        <span class="button-icon">🚪</span> Выйти
+      </a>
+      
+      <a href="{% url 'users:delete_user' %}" class="action-button delete-button">
+        <span class="button-icon">🗑️</span> Удалить аккаунт
+      </a>
+    </div>
+  </div>
+</div>
             <hr>
             {% if object.items.all.count > 0 %}
               <h3><span>Ваши товары</span></h3> 

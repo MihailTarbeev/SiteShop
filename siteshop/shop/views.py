@@ -55,7 +55,8 @@ class UpdateItem(UpdateView):
     fields = ["image", "name", "price", "description",
               "is_available", "category", "slug"]
     template_name = 'shop/edit_item.html'
-    extra_context = {"title": "Редактирование"}
+    extra_context = {"title": "Редактирование",
+                     'default_image': settings.DEFAULT_ITEM_IMAGE}
     context_object_name = "item"
 
 
