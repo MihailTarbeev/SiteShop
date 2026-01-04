@@ -22,7 +22,7 @@ class BusinessElementAdmin(admin.ModelAdmin):
 class AccessRoleRuleAdmin(admin.ModelAdmin):
     list_display = ('id', 'role', 'element',
                     'read_permission', "read_all_permission", 'create_permission',
-                    "update_permission", "update_permission", "update_all_permission",
+                    "update_permission", "update_all_permission",
                     "delete_permission", "delete_all_permission")
     list_display_links = ('id',)
     ordering = ('role', "element")

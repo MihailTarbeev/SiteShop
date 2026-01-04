@@ -4,7 +4,7 @@ from django import forms
 
 @deconstructible
 class RussianValidator:
-    ALLOWED_CHARS = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯабвгдеёжзийклмнопрстуфхцчшщбыъэюя- "
+    ALLOWED_CHARS = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯабвгдеёжзийклмнопрстуфхцчшщбыъьэюя- "
     code = 'russian'
 
     def __init__(self, message=None):

@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import CreateView, UpdateView, DeleteView
-from .mixins import MultiPermissionMixin
+from users.mixins import MyPermissionMixin
 from siteshop import settings
 from .forms import ProfileUserForm, RegisterUserForm, LoginForm
 from .models import User, Session
@@ -61,7 +61,7 @@ class LoginView(View):
         })
 
 
-class LogoutView(View):
+class LogoutView(MyPermissionMixin, View):
     def get(self, request):
         session_key = request.COOKIES.get('sessionid')
         if session_key:
@@ -77,8 +77,8 @@ class LogoutView(View):
         return response
 
 
-class ProfileUser(MultiPermissionMixin, UpdateView):
-    permissions_required = ["Users.read_permission"]
+class ProfileUser(MyPermissionMixin, UpdateView):
+    permission_required = "Users.update_permission"
     model = get_user_model()
     form_class = ProfileUserForm
     template_name = "users/profile.html"
@@ -94,8 +94,8 @@ class ProfileUser(MultiPermissionMixin, UpdateView):
         return self.request.user
 
 
-class DeleteUser(MultiPermissionMixin, View):
-    permissions_required = ["Users.delete_permission"]
+class DeleteUser(MyPermissionMixin, View):
+    permission_required = "Users.delete_permission"
 
     def get(self, request):
         return render(request, 'users/delete_confirm.html', {
@@ -111,11 +111,3 @@ class DeleteUser(MultiPermissionMixin, View):
         response.delete_cookie('sessionid')
         messages.success(request, 'Ваш аккаунт был успешно удалён.')
         return response
-
-
-# def handler401(request):
-#     return HttpResponse(
-#         "Требуется авторизация",
-#         status=401,
-#         content_type="text/plain"
-#     )
