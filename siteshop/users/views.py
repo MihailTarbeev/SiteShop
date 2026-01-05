@@ -14,6 +14,7 @@ from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.forms.models import model_to_dict
 from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
 
 
 class RegisterUser(CreateView):
@@ -120,8 +121,10 @@ class DeleteUser(MyPermissionMixin, View):
 class ListRulesAPI(generics.ListAPIView):
     queryset = AccessRoleRule.objects.all()
     serializer_class = AccessRoleRuleSerializer
+    permission_classes = [IsAdminUser]
 
 
 class UpdateRuleAPI(generics.RetrieveUpdateAPIView):
     queryset = AccessRoleRule.objects.all()
     serializer_class = AccessRoleRuleSerializer
+    permission_classes = [IsAdminUser]
