@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import Role, BusinessElement, AccessRoleRule, User
+from .models import Role, BusinessElement, AccessRoleRule, User, RefreshToken
 from django.utils.translation import gettext_lazy as _
 
 
@@ -77,3 +77,9 @@ class UserAdmin(BaseUserAdmin):
     @admin.display(description="Роль")
     def role_name(self, obj):
         return obj.role.name if obj.role else '-'
+
+
+@admin.register(RefreshToken)
+class RefreshTokenAdmin(admin.ModelAdmin):
+    list_display = ("id", "user", "token", "created_at",
+                    "expires_at", "is_active")
