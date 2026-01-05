@@ -1,15 +1,19 @@
-from django.http import HttpResponse
+from django.db.models.fields import json
+from django.http import HttpResponse, JsonResponse
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import CreateView, UpdateView, DeleteView
+from users.serializers import AccessRoleRuleSerializer
 from users.mixins import MyPermissionMixin
 from siteshop import settings
 from .forms import ProfileUserForm, RegisterUserForm, LoginForm
-from .models import User, Session
+from .models import User, Session, AccessRoleRule
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
 from django.contrib import messages
+from django.forms.models import model_to_dict
+from rest_framework import generics
 
 
 class RegisterUser(CreateView):
@@ -111,3 +115,13 @@ class DeleteUser(MyPermissionMixin, View):
         response.delete_cookie('sessionid')
         messages.success(request, 'Ваш аккаунт был успешно удалён.')
         return response
+
+
+class ListRulesAPI(generics.ListAPIView):
+    queryset = AccessRoleRule.objects.all()
+    serializer_class = AccessRoleRuleSerializer
+
+
+class UpdateRuleAPI(generics.RetrieveUpdateAPIView):
+    queryset = AccessRoleRule.objects.all()
+    serializer_class = AccessRoleRuleSerializer

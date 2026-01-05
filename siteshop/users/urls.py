@@ -9,4 +9,7 @@ urlpatterns = [
     path('logout/', views.LogoutView.as_view(), name='logout'),
     path('profile/', views.ProfileUser.as_view(), name='profile'),
     path('delete/', views.DeleteUser.as_view(), name='delete_user'),
+    path('api/v1/rules/', views.ListRulesAPI.as_view(), name='api_rules'),
+    path('api/v1/rules/<int:pk>/', views.UpdateRuleAPI.as_view(),
+         name='api_rule_detail'),
 ]
