@@ -1,2537 +1,508 @@
-{
-    "type": "database",
-    "name": "db",
-    "objects": [
-        {
-            "type": "table",
-            "database": null,
-            "name": "auth_group_permissions",
-            "withoutRowId": false,
-            "strict": false,
-            "ddl": "CREATE TABLE \"auth_group_permissions\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"group_id\" integer NOT NULL REFERENCES \"auth_group\" (\"id\") DEFERRABLE INITIALLY DEFERRED, \"permission_id\" integer NOT NULL REFERENCES \"auth_permission\" (\"id\") DEFERRABLE INITIALLY DEFERRED)",
-            "columns": [
-                {
-                    "name": "id",
-                    "type": "integer",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "PRIMARY KEY",
-                            "definition": "PRIMARY KEY AUTOINCREMENT"
-                        }
-                    ]
-                },
-                {
-                    "name": "group_id",
-                    "type": "integer",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "FOREIGN KEY",
-                            "definition": "REFERENCES \"auth_group\" (\"id\") "
-                        }
-                    ]
-                },
-                {
-                    "name": "permission_id",
-                    "type": "integer",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "FOREIGN KEY",
-                            "definition": "REFERENCES \"auth_permission\" (\"id\") "
-                        }
-                    ]
-                }
-            ],
-            "rows": [
-            ]
-        },
-        {
-            "type": "table",
-            "database": null,
-            "name": "auth_permission",
-            "withoutRowId": false,
-            "strict": false,
-            "ddl": "CREATE TABLE \"auth_permission\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"content_type_id\" integer NOT NULL REFERENCES \"django_content_type\" (\"id\") DEFERRABLE INITIALLY DEFERRED, \"codename\" varchar(100) NOT NULL, \"name\" varchar(255) NOT NULL)",
-            "columns": [
-                {
-                    "name": "id",
-                    "type": "integer",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "PRIMARY KEY",
-                            "definition": "PRIMARY KEY AUTOINCREMENT"
-                        }
-                    ]
-                },
-                {
-                    "name": "content_type_id",
-                    "type": "integer",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "FOREIGN KEY",
-                            "definition": "REFERENCES \"django_content_type\" (\"id\") "
-                        }
-                    ]
-                },
-                {
-                    "name": "codename",
-                    "type": "varchar",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "name",
-                    "type": "varchar",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                }
-            ],
-            "rows": [
-                [
-                    1,
-                    1,
-                    "add_logentry",
-                    "Can add log entry"
-                ],
-                [
-                    2,
-                    1,
-                    "change_logentry",
-                    "Can change log entry"
-                ],
-                [
-                    3,
-                    1,
-                    "delete_logentry",
-                    "Can delete log entry"
-                ],
-                [
-                    4,
-                    1,
-                    "view_logentry",
-                    "Can view log entry"
-                ],
-                [
-                    5,
-                    2,
-                    "add_permission",
-                    "Can add permission"
-                ],
-                [
-                    6,
-                    2,
-                    "change_permission",
-                    "Can change permission"
-                ],
-                [
-                    7,
-                    2,
-                    "delete_permission",
-                    "Can delete permission"
-                ],
-                [
-                    8,
-                    2,
-                    "view_permission",
-                    "Can view permission"
-                ],
-                [
-                    9,
-                    3,
-                    "add_group",
-                    "Can add group"
-                ],
-                [
-                    10,
-                    3,
-                    "change_group",
-                    "Can change group"
-                ],
-                [
-                    11,
-                    3,
-                    "delete_group",
-                    "Can delete group"
-                ],
-                [
-                    12,
-                    3,
-                    "view_group",
-                    "Can view group"
-                ],
-                [
-                    13,
-                    4,
-                    "add_contenttype",
-                    "Can add content type"
-                ],
-                [
-                    14,
-                    4,
-                    "change_contenttype",
-                    "Can change content type"
-                ],
-                [
-                    15,
-                    4,
-                    "delete_contenttype",
-                    "Can delete content type"
-                ],
-                [
-                    16,
-                    4,
-                    "view_contenttype",
-                    "Can view content type"
-                ],
-                [
-                    17,
-                    5,
-                    "add_session",
-                    "Can add session"
-                ],
-                [
-                    18,
-                    5,
-                    "change_session",
-                    "Can change session"
-                ],
-                [
-                    19,
-                    5,
-                    "delete_session",
-                    "Can delete session"
-                ],
-                [
-                    20,
-                    5,
-                    "view_session",
-                    "Can view session"
-                ],
-                [
-                    21,
-                    6,
-                    "add_businesselement",
-                    "Can add business element"
-                ],
-                [
-                    22,
-                    6,
-                    "change_businesselement",
-                    "Can change business element"
-                ],
-                [
-                    23,
-                    6,
-                    "delete_businesselement",
-                    "Can delete business element"
-                ],
-                [
-                    24,
-                    6,
-                    "view_businesselement",
-                    "Can view business element"
-                ],
-                [
-                    25,
-                    7,
-                    "add_role",
-                    "Can add role"
-                ],
-                [
-                    26,
-                    7,
-                    "change_role",
-                    "Can change role"
-                ],
-                [
-                    27,
-                    7,
-                    "delete_role",
-                    "Can delete role"
-                ],
-                [
-                    28,
-                    7,
-                    "view_role",
-                    "Can view role"
-                ],
-                [
-                    29,
-                    8,
-                    "add_accessrolerule",
-                    "Can add access role rule"
-                ],
-                [
-                    30,
-                    8,
-                    "change_accessrolerule",
-                    "Can change access role rule"
-                ],
-                [
-                    31,
-                    8,
-                    "delete_accessrolerule",
-                    "Can delete access role rule"
-                ],
-                [
-                    32,
-                    8,
-                    "view_accessrolerule",
-                    "Can view access role rule"
-                ],
-                [
-                    33,
-                    9,
-                    "add_user",
-                    "Can add user"
-                ],
-                [
-                    34,
-                    9,
-                    "change_user",
-                    "Can change user"
-                ],
-                [
-                    35,
-                    9,
-                    "delete_user",
-                    "Can delete user"
-                ],
-                [
-                    36,
-                    9,
-                    "view_user",
-                    "Can view user"
-                ],
-                [
-                    37,
-                    10,
-                    "add_session",
-                    "Can add session"
-                ],
-                [
-                    38,
-                    10,
-                    "change_session",
-                    "Can change session"
-                ],
-                [
-                    39,
-                    10,
-                    "delete_session",
-                    "Can delete session"
-                ],
-                [
-                    40,
-                    10,
-                    "view_session",
-                    "Can view session"
-                ],
-                [
-                    41,
-                    11,
-                    "add_category",
-                    "Can add category"
-                ],
-                [
-                    42,
-                    11,
-                    "change_category",
-                    "Can change category"
-                ],
-                [
-                    43,
-                    11,
-                    "delete_category",
-                    "Can delete category"
-                ],
-                [
-                    44,
-                    11,
-                    "view_category",
-                    "Can view category"
-                ],
-                [
-                    45,
-                    12,
-                    "add_item",
-                    "Can add item"
-                ],
-                [
-                    46,
-                    12,
-                    "change_item",
-                    "Can change item"
-                ],
-                [
-                    47,
-                    12,
-                    "delete_item",
-                    "Can delete item"
-                ],
-                [
-                    48,
-                    12,
-                    "view_item",
-                    "Can view item"
-                ],
-                [
-                    49,
-                    13,
-                    "add_refreshtoken",
-                    "Can add Refresh токен"
-                ],
-                [
-                    50,
-                    13,
-                    "change_refreshtoken",
-                    "Can change Refresh токен"
-                ],
-                [
-                    51,
-                    13,
-                    "delete_refreshtoken",
-                    "Can delete Refresh токен"
-                ],
-                [
-                    52,
-                    13,
-                    "view_refreshtoken",
-                    "Can view Refresh токен"
-                ]
-            ]
-        },
-        {
-            "type": "table",
-            "database": null,
-            "name": "django_admin_log",
-            "withoutRowId": false,
-            "strict": false,
-            "ddl": "CREATE TABLE \"django_admin_log\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"object_id\" text NULL, \"object_repr\" varchar(200) NOT NULL, \"action_flag\" smallint unsigned NOT NULL CHECK (\"action_flag\" >= 0), \"change_message\" text NOT NULL, \"content_type_id\" integer NULL REFERENCES \"django_content_type\" (\"id\") DEFERRABLE INITIALLY DEFERRED, \"user_id\" bigint NOT NULL REFERENCES \"users_user\" (\"id\") DEFERRABLE INITIALLY DEFERRED, \"action_time\" datetime NOT NULL)",
-            "columns": [
-                {
-                    "name": "id",
-                    "type": "integer",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "PRIMARY KEY",
-                            "definition": "PRIMARY KEY AUTOINCREMENT"
-                        }
-                    ]
-                },
-                {
-                    "name": "object_id",
-                    "type": "text",
-                    "constraints": [
-                        {
-                            "type": null,
-                            "definition": "NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "object_repr",
-                    "type": "varchar",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "action_flag",
-                    "type": "smallint unsigned",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "CHECK",
-                            "definition": "CHECK (\"action_flag\" >= 0)"
-                        }
-                    ]
-                },
-                {
-                    "name": "change_message",
-                    "type": "text",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "content_type_id",
-                    "type": "integer",
-                    "constraints": [
-                        {
-                            "type": null,
-                            "definition": "NULL "
-                        },
-                        {
-                            "type": "FOREIGN KEY",
-                            "definition": "REFERENCES \"django_content_type\" (\"id\") "
-                        }
-                    ]
-                },
-                {
-                    "name": "user_id",
-                    "type": "bigint",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "FOREIGN KEY",
-                            "definition": "REFERENCES \"users_user\" (\"id\") "
-                        }
-                    ]
-                },
-                {
-                    "name": "action_time",
-                    "type": "datetime",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                }
-            ],
-            "rows": [
-                [
-                    45,
-                    "7",
-                    "AccessRoleRule object (7)",
-                    2,
-                    "[{\"changed\": {\"fields\": [\"\\u041e\\u0431\\u043d\\u043e\\u0432\\u043b\\u0435\\u043d\\u0438\\u0435 \\u0441\\u0432\\u043e\\u0438\\u0445\", \"\\u0423\\u0434\\u0430\\u043b\\u0435\\u043d\\u0438\\u0435 \\u0441\\u0432\\u043e\\u0438\\u0445\"]}}]",
-                    8,
-                    9,
-                    "2026-01-04 15:48:36.506017"
-                ],
-                [
-                    48,
-                    "6",
-                    "test3@test.com",
-                    2,
-                    "[{\"changed\": {\"fields\": [\"\\u0420\\u043e\\u043b\\u044c\"]}}]",
-                    9,
-                    6,
-                    "2026-01-05 05:25:31.466179"
-                ],
-                [
-                    49,
-                    "1",
-                    "tarb3@yandex.ru",
-                    3,
-                    "",
-                    9,
-                    9,
-                    "2026-01-05 05:26:28.747439"
-                ]
-            ]
-        },
-        {
-            "type": "table",
-            "database": null,
-            "name": "django_content_type",
-            "withoutRowId": false,
-            "strict": false,
-            "ddl": "CREATE TABLE \"django_content_type\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"app_label\" varchar(100) NOT NULL, \"model\" varchar(100) NOT NULL)",
-            "columns": [
-                {
-                    "name": "id",
-                    "type": "integer",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "PRIMARY KEY",
-                            "definition": "PRIMARY KEY AUTOINCREMENT"
-                        }
-                    ]
-                },
-                {
-                    "name": "app_label",
-                    "type": "varchar",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "model",
-                    "type": "varchar",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                }
-            ],
-            "rows": [
-                [
-                    1,
-                    "admin",
-                    "logentry"
-                ],
-                [
-                    2,
-                    "auth",
-                    "permission"
-                ],
-                [
-                    3,
-                    "auth",
-                    "group"
-                ],
-                [
-                    4,
-                    "contenttypes",
-                    "contenttype"
-                ],
-                [
-                    5,
-                    "sessions",
-                    "session"
-                ],
-                [
-                    6,
-                    "users",
-                    "businesselement"
-                ],
-                [
-                    7,
-                    "users",
-                    "role"
-                ],
-                [
-                    8,
-                    "users",
-                    "accessrolerule"
-                ],
-                [
-                    9,
-                    "users",
-                    "user"
-                ],
-                [
-                    10,
-                    "users",
-                    "session"
-                ],
-                [
-                    11,
-                    "shop",
-                    "category"
-                ],
-                [
-                    12,
-                    "shop",
-                    "item"
-                ],
-                [
-                    13,
-                    "users",
-                    "refreshtoken"
-                ]
-            ]
-        },
-        {
-            "type": "table",
-            "database": null,
-            "name": "django_migrations",
-            "withoutRowId": false,
-            "strict": false,
-            "ddl": "CREATE TABLE \"django_migrations\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"app\" varchar(255) NOT NULL, \"name\" varchar(255) NOT NULL, \"applied\" datetime NOT NULL)",
-            "columns": [
-                {
-                    "name": "id",
-                    "type": "integer",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "PRIMARY KEY",
-                            "definition": "PRIMARY KEY AUTOINCREMENT"
-                        }
-                    ]
-                },
-                {
-                    "name": "app",
-                    "type": "varchar",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "name",
-                    "type": "varchar",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "applied",
-                    "type": "datetime",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                }
-            ],
-            "rows": [
-                [
-                    1,
-                    "contenttypes",
-                    "0001_initial",
-                    "2026-01-02 10:30:12.558964"
-                ],
-                [
-                    2,
-                    "contenttypes",
-                    "0002_remove_content_type_name",
-                    "2026-01-02 10:30:12.571962"
-                ],
-                [
-                    3,
-                    "auth",
-                    "0001_initial",
-                    "2026-01-02 10:30:12.593962"
-                ],
-                [
-                    4,
-                    "auth",
-                    "0002_alter_permission_name_max_length",
-                    "2026-01-02 10:30:12.606965"
-                ],
-                [
-                    5,
-                    "auth",
-                    "0003_alter_user_email_max_length",
-                    "2026-01-02 10:30:12.613978"
-                ],
-                [
-                    6,
-                    "auth",
-                    "0004_alter_user_username_opts",
-                    "2026-01-02 10:30:12.621702"
-                ],
-                [
-                    7,
-                    "auth",
-                    "0005_alter_user_last_login_null",
-                    "2026-01-02 10:30:12.630703"
-                ],
-                [
-                    8,
-                    "auth",
-                    "0006_require_contenttypes_0002",
-                    "2026-01-02 10:30:12.638706"
-                ],
-                [
-                    9,
-                    "auth",
-                    "0007_alter_validators_add_error_messages",
-                    "2026-01-02 10:30:12.646702"
-                ],
-                [
-                    10,
-                    "auth",
-                    "0008_alter_user_username_max_length",
-                    "2026-01-02 10:30:12.657703"
-                ],
-                [
-                    11,
-                    "auth",
-                    "0009_alter_user_last_name_max_length",
-                    "2026-01-02 10:30:12.665715"
-                ],
-                [
-                    12,
-                    "auth",
-                    "0010_alter_group_name_max_length",
-                    "2026-01-02 10:30:12.673141"
-                ],
-                [
-                    13,
-                    "auth",
-                    "0011_update_proxy_permissions",
-                    "2026-01-02 10:30:12.687141"
-                ],
-                [
-                    14,
-                    "auth",
-                    "0012_alter_user_first_name_max_length",
-                    "2026-01-02 10:30:12.695145"
-                ],
-                [
-                    15,
-                    "users",
-                    "0001_initial",
-                    "2026-01-02 10:30:12.733866"
-                ],
-                [
-                    16,
-                    "admin",
-                    "0001_initial",
-                    "2026-01-02 10:30:12.754856"
-                ],
-                [
-                    17,
-                    "admin",
-                    "0002_logentry_remove_auto_add",
-                    "2026-01-02 10:30:12.766862"
-                ],
-                [
-                    18,
-                    "admin",
-                    "0003_logentry_add_action_flag_choices",
-                    "2026-01-02 10:30:12.781856"
-                ],
-                [
-                    19,
-                    "sessions",
-                    "0001_initial",
-                    "2026-01-02 10:30:12.791695"
-                ],
-                [
-                    20,
-                    "shop",
-                    "0001_initial",
-                    "2026-01-03 07:19:32.499928"
-                ],
-                [
-                    21,
-                    "users",
-                    "0002_alter_accessrolerule_options_and_more",
-                    "2026-01-03 07:19:32.529294"
-                ],
-                [
-                    22,
-                    "shop",
-                    "0002_alter_category_options_alter_item_options_item_slug_and_more",
-                    "2026-01-03 08:54:26.167799"
-                ],
-                [
-                    23,
-                    "shop",
-                    "0003_alter_item_slug",
-                    "2026-01-03 08:56:53.100721"
-                ],
-                [
-                    24,
-                    "shop",
-                    "0004_alter_item_options_alter_item_name",
-                    "2026-01-05 06:42:45.506731"
-                ],
-                [
-                    25,
-                    "users",
-                    "0003_refreshtoken_delete_session",
-                    "2026-01-05 06:42:45.525743"
-                ]
-            ]
-        },
-        {
-            "type": "table",
-            "database": null,
-            "name": "django_session",
-            "withoutRowId": false,
-            "strict": false,
-            "ddl": "CREATE TABLE \"django_session\" (\"session_key\" varchar(40) NOT NULL PRIMARY KEY, \"session_data\" text NOT NULL, \"expire_date\" datetime NOT NULL)",
-            "columns": [
-                {
-                    "name": "session_key",
-                    "type": "varchar",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "PRIMARY KEY",
-                            "definition": "PRIMARY KEY"
-                        }
-                    ]
-                },
-                {
-                    "name": "session_data",
-                    "type": "text",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "expire_date",
-                    "type": "datetime",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                }
-            ],
-            "rows": [
-                [
-                    "kkn73aa5rc0zv07epmvnjvu2wob71tdj",
-                    ".eJxVjMEOwiAQRP-FsyFACxSP3vsNZNldpGpoUtqT8d9tkx40c5v3Zt4iwraWuDVe4kTiKrS4_HYJ8Mn1APSAep8lznVdpiQPRZ60yXEmft1O9--gQCv7mh2g4ZD30JCZVdAevXW9UT0rCki2S153yaJyiAxDIjAesnKsewvi8wUF5TjF:1vbuaf:OpSMcEM4FTsGgHQsc-yUWGdKsnCGs6W-GbBR0Bh00II",
-                    "2026-01-17 05:54:17.024899"
-                ],
-                [
-                    "i6wvlfkqfh3olnrj844kuklpnu8yfr0p",
-                    ".eJxVjMEOwiAQRP-FsyFACxSP3vsNZNldpGpoUtqT8d9tkx40c5v3Zt4iwraWuDVe4kTiKrS4_HYJ8Mn1APSAep8lznVdpiQPRZ60yXEmft1O9--gQCv7mh2g4ZD30JCZVdAevXW9UT0rCki2S153yaJyiAxDIjAesnKsewvi8wUF5TjF:1vbujA:wmLjkfa7J9IqUZsKQgX0w54UKSovwTgGRwLrXFny7Qw",
-                    "2026-01-17 06:03:04.864814"
-                ],
-                [
-                    "kmhz7pp1y6uyh8k3ljmcy906f4xi7cfj",
-                    ".eJxVjMEOwiAQRP-FsyFACxSP3vsNZNldpGpoUtqT8d9tkx40c5v3Zt4iwraWuDVe4kTiKrS4_HYJ8Mn1APSAep8lznVdpiQPRZ60yXEmft1O9--gQCv7mh2g4ZD30JCZVdAevXW9UT0rCki2S153yaJyiAxDIjAesnKsewvi8wUF5TjF:1vc7Uq:5NaASN6VidUIEN5Anhqcl5zWhcpvOqqkOklWIpGxLH0",
-                    "2026-01-17 19:41:08.325200"
-                ],
-                [
-                    "hllsxep2j7v9t4sdspdgb61yb5dhp7j8",
-                    ".eJxVjMEOwiAQRP-FsyFACxSP3vsNZNldpGpoUtqT8d9tkx40c5v3Zt4iwraWuDVe4kTiKrS4_HYJ8Mn1APSAep8lznVdpiQPRZ60yXEmft1O9--gQCv7mh2g4ZD30JCZVdAevXW9UT0rCki2S153yaJyiAxDIjAesnKsewvi8wUF5TjF:1vc7gM:LZpdpDLSnVWMLS945TqZARyBVtv4ZXY2vx8I9B4I-cc",
-                    "2026-01-17 19:53:02.754729"
-                ],
-                [
-                    "h4pmqb22f10swvc9mulrr5t6hocmftk1",
-                    ".eJxVjMEOwiAQRP-FsyFACxSP3vsNZNldpGpoUtqT8d9tkx40c5v3Zt4iwraWuDVe4kTiKrS4_HYJ8Mn1APSAep8lznVdpiQPRZ60yXEmft1O9--gQCv7mh2g4ZD30JCZVdAevXW9UT0rCki2S153yaJyiAxDIjAesnKsewvi8wUF5TjF:1vcKVP:mTXDRVnX9AqaE-gsoRXP3j3m_XNuXfDBita0Dh1F92w",
-                    "2026-01-18 09:34:35.186128"
-                ],
-                [
-                    "jlaxxkebl146ai8xzw4tenw2sergv3wh",
-                    ".eJxVjMEOwiAQRP-FsyFACxSP3vsNZNldpGpoUtqT8d9tkx40c5v3Zt4iwraWuDVe4kTiKrS4_HYJ8Mn1APSAep8lznVdpiQPRZ60yXEmft1O9--gQCv7mh2g4ZD30JCZVdAevXW9UT0rCki2S153yaJyiAxDIjAesnKsewvi8wUF5TjF:1vcLdu:PU8kL-suo5PHF2jtDCRR_Kt7gAArgbJYo0SCZtpKHkE",
-                    "2026-01-18 10:47:26.181286"
-                ],
-                [
-                    "1w2ya2s6hcnemjsd1v5dhnq4bkyhznjo",
-                    ".eJxVjMEOwiAQRP-FsyFACxSP3vsNZNldpGpoUtqT8d9tkx40c5v3Zt4iwraWuDVe4kTiKrS4_HYJ8Mn1APSAep8lznVdpiQPRZ60yXEmft1O9--gQCv7mh2g4ZD30JCZVdAevXW9UT0rCki2S153yaJyiAxDIjAesnKsewvi8wUF5TjF:1vcMl9:5r8lh4DbgcFUiUM7YA-XJqTBLNvWlU4CIDHvyo5J5Xo",
-                    "2026-01-18 11:58:59.021475"
-                ],
-                [
-                    "mlragerichzaobd7esdilb0p35ehb2cq",
-                    ".eJxVzMEOwiAQBNB_4WyIFHYBj977DWSBVaqGJqU9Gf9dmvSg15k38xaBtrWErfESpiwuwovTbxYpPbnuRX5Qvc8yzXVdpih3Io-2yXHO_Loe9u-gUCt9PQBbtNprUNkDsgPHTuMZ48AG7M1oJCKndFImGe87JGDqVCMbQvH5ArJINq4:1vcQDn:i6rfDdPlhZMMYYHVwekgcwmgkgUcAUuwT37eWweV7xg",
-                    "2026-01-18 15:40:47.527266"
-                ],
-                [
-                    "yqxiyf9cioj9j3ubox42fc5cea47veu4",
-                    ".eJxVzMEOwiAQBNB_4WyIFHYBj977DWSBVaqGJqU9Gf9dmvSg15k38xaBtrWErfESpiwuwovTbxYpPbnuRX5Qvc8yzXVdpih3Io-2yXHO_Loe9u-gUCt9PQBbtNprUNkDsgPHTuMZ48AG7M1oJCKndFImGe87JGDqVCMbQvH5ArJINq4:1vcQKt:-k06pHEIKm5pEW2HsEv1fQPQ2D7ytKBn4JR4x7Rzwpc",
-                    "2026-01-18 15:48:07.806674"
-                ],
-                [
-                    "wcajd17j0qd8kirxnkwp7fm8f2it32m6",
-                    ".eJxVzMEOwiAQBNB_4WyIFHYBj977DWSBVaqGJqU9Gf9dmvSg15k38xaBtrWErfESpiwuwovTbxYpPbnuRX5Qvc8yzXVdpih3Io-2yXHO_Loe9u-gUCt9PQBbtNprUNkDsgPHTuMZ48AG7M1oJCKndFImGe87JGDqVCMbQvH5ArJINq4:1vcQkr:yVXouHdfBDSZhZYaNanzcSLdwRlfafwRevVGd3_3m7k",
-                    "2026-01-18 16:14:57.373322"
-                ],
-                [
-                    "2r4as1ztckvw0ab04w66ag5bvoyi58j2",
-                    ".eJxVzMEOwiAQBNB_4WyIFHYBj977DWSBVaqGJqU9Gf9dmvSg15k38xaBtrWErfESpiwuwovTbxYpPbnuRX5Qvc8yzXVdpih3Io-2yXHO_Loe9u-gUCt9PQBbtNprUNkDsgPHTuMZ48AG7M1oJCKndFImGe87JGDqVCMbQvH5ArJINq4:1vcd6X:0-2Hva16hyMwZLlGw9KNziJUVke9051pMwwfQZ5AtEY",
-                    "2026-01-19 05:26:09.340372"
-                ]
-            ]
-        },
-        {
-            "type": "table",
-            "database": null,
-            "name": "shop_category",
-            "withoutRowId": false,
-            "strict": false,
-            "ddl": "CREATE TABLE \"shop_category\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"name\" varchar(100) NOT NULL UNIQUE, \"slug\" varchar(100) NOT NULL UNIQUE)",
-            "columns": [
-                {
-                    "name": "id",
-                    "type": "integer",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "PRIMARY KEY",
-                            "definition": "PRIMARY KEY AUTOINCREMENT"
-                        }
-                    ]
-                },
-                {
-                    "name": "name",
-                    "type": "varchar",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "UNIQUE",
-                            "definition": "UNIQUE"
-                        }
-                    ]
-                },
-                {
-                    "name": "slug",
-                    "type": "varchar",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "UNIQUE",
-                            "definition": "UNIQUE"
-                        }
-                    ]
-                }
-            ],
-            "rows": [
-                [
-                    1,
-                    "Игрушки",
-                    "toys"
-                ],
-                [
-                    2,
-                    "Еда",
-                    "food"
-                ],
-                [
-                    3,
-                    "Одежда",
-                    "clothes"
-                ],
-                [
-                    4,
-                    "Мебель",
-                    "furniture"
-                ],
-                [
-                    5,
-                    "Животные",
-                    "animals"
-                ]
-            ]
-        },
-        {
-            "type": "table",
-            "database": null,
-            "name": "shop_item",
-            "withoutRowId": false,
-            "strict": false,
-            "ddl": "CREATE TABLE \"shop_item\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"name\" varchar(200) NOT NULL, \"price\" decimal NOT NULL, \"description\" text NOT NULL, \"created_at\" datetime NOT NULL, \"updated_at\" datetime NOT NULL, \"is_available\" bool NOT NULL, \"image\" varchar(100) NOT NULL, \"category_id\" bigint NULL REFERENCES \"shop_category\" (\"id\") DEFERRABLE INITIALLY DEFERRED, \"owner_id\" bigint NOT NULL REFERENCES \"users_user\" (\"id\") DEFERRABLE INITIALLY DEFERRED, \"slug\" varchar(100) NOT NULL UNIQUE)",
-            "columns": [
-                {
-                    "name": "id",
-                    "type": "integer",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "PRIMARY KEY",
-                            "definition": "PRIMARY KEY AUTOINCREMENT"
-                        }
-                    ]
-                },
-                {
-                    "name": "name",
-                    "type": "varchar",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "price",
-                    "type": "decimal",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "description",
-                    "type": "text",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "created_at",
-                    "type": "datetime",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "updated_at",
-                    "type": "datetime",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "is_available",
-                    "type": "bool",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "image",
-                    "type": "varchar",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "category_id",
-                    "type": "bigint",
-                    "constraints": [
-                        {
-                            "type": null,
-                            "definition": "NULL "
-                        },
-                        {
-                            "type": "FOREIGN KEY",
-                            "definition": "REFERENCES \"shop_category\" (\"id\") "
-                        }
-                    ]
-                },
-                {
-                    "name": "owner_id",
-                    "type": "bigint",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "FOREIGN KEY",
-                            "definition": "REFERENCES \"users_user\" (\"id\") "
-                        }
-                    ]
-                },
-                {
-                    "name": "slug",
-                    "type": "varchar",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "UNIQUE",
-                            "definition": "UNIQUE"
-                        }
-                    ]
-                }
-            ],
-            "rows": [
-                [
-                    4,
-                    "Оливье",
-                    499.99,
-                    "Закусочный салат русской кухни из отварных корнеплодов, солёных огурцов, яиц с мясом или варёной колбасой в майонезной заправке.",
-                    "2026-01-03 19:41:55.655876",
-                    "2026-01-03 19:41:55.655876",
-                    1,
-                    "items\/2026\/01\/03\/оливье.png",
-                    2,
-                    3,
-                    "olivie"
-                ],
-                [
-                    5,
-                    "Новогодний чай",
-                    9.99,
-                    "Напиток, который ассоциируется с новогодним праздником, может быть частью праздничного декора или подарком. За отзыв мы готовы добавить кубик сахара.",
-                    "2026-01-03 19:44:52.904278",
-                    "2026-01-03 19:44:52.904278",
-                    1,
-                    "items\/2026\/01\/03\/кружка_чая.jpg",
-                    2,
-                    3,
-                    "tea"
-                ],
-                [
-                    6,
-                    "Морская свинка Иван",
-                    999.99,
-                    "Морская свинка Иван — приятный молодой грызун вид, одомашненных грызунов из рода свинок семейства свинковых.",
-                    "2026-01-03 19:47:45.063628",
-                    "2026-01-03 19:47:45.063628",
-                    1,
-                    "items\/2026\/01\/03\/морская_свинка.jpg",
-                    5,
-                    3,
-                    "ivan-morska9-svinka"
-                ],
-                [
-                    7,
-                    "Дед Мороз",
-                    2026,
-                    "Это новогодняя игрушка, которая может использоваться как декоративный элемент, часть праздничного сценария или фотозоны.",
-                    "2026-01-03 19:56:46.247471",
-                    "2026-01-03 20:15:28.764198",
-                    1,
-                    "items\/2026\/01\/03\/дед_мороз.jpg",
-                    1,
-                    6,
-                    "ded-moroz"
-                ],
-                [
-                    8,
-                    "Новогодние ёлочки",
-                    200,
-                    "Самодельные новогодние игрушки в виде ёлочки",
-                    "2026-01-03 20:11:37.318321",
-                    "2026-01-03 20:11:37.318321",
-                    1,
-                    "items\/2026\/01\/03\/ёлочки.jpg",
-                    1,
-                    6,
-                    "toys"
-                ],
-                [
-                    9,
-                    "Гарри Поттер",
-                    777,
-                    "Игрушка Гарри Поттера",
-                    "2026-01-03 20:13:53.304692",
-                    "2026-01-03 20:13:53.304692",
-                    1,
-                    "items\/2026\/01\/03\/Гарри_Поттер.jpg",
-                    1,
-                    6,
-                    "garry"
-                ]
-            ]
-        },
-        {
-            "type": "table",
-            "database": null,
-            "name": "users_accessrolerule",
-            "withoutRowId": false,
-            "strict": false,
-            "ddl": "CREATE TABLE \"users_accessrolerule\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"read_permission\" bool NOT NULL, \"read_all_permission\" bool NOT NULL, \"create_permission\" bool NOT NULL, \"update_permission\" bool NOT NULL, \"update_all_permission\" bool NOT NULL, \"delete_permission\" bool NOT NULL, \"delete_all_permission\" bool NOT NULL, \"element_id\" bigint NOT NULL REFERENCES \"users_businesselement\" (\"id\") DEFERRABLE INITIALLY DEFERRED, \"role_id\" bigint NOT NULL REFERENCES \"users_role\" (\"id\") DEFERRABLE INITIALLY DEFERRED)",
-            "columns": [
-                {
-                    "name": "id",
-                    "type": "integer",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "PRIMARY KEY",
-                            "definition": "PRIMARY KEY AUTOINCREMENT"
-                        }
-                    ]
-                },
-                {
-                    "name": "read_permission",
-                    "type": "bool",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "read_all_permission",
-                    "type": "bool",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "create_permission",
-                    "type": "bool",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "update_permission",
-                    "type": "bool",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "update_all_permission",
-                    "type": "bool",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "delete_permission",
-                    "type": "bool",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "delete_all_permission",
-                    "type": "bool",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "element_id",
-                    "type": "bigint",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "FOREIGN KEY",
-                            "definition": "REFERENCES \"users_businesselement\" (\"id\") "
-                        }
-                    ]
-                },
-                {
-                    "name": "role_id",
-                    "type": "bigint",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "FOREIGN KEY",
-                            "definition": "REFERENCES \"users_role\" (\"id\") "
-                        }
-                    ]
-                }
-            ],
-            "rows": [
-                [
-                    1,
-                    1,
-                    1,
-                    1,
-                    1,
-                    1,
-                    1,
-                    1,
-                    1,
-                    1
-                ],
-                [
-                    2,
-                    1,
-                    1,
-                    1,
-                    1,
-                    1,
-                    1,
-                    1,
-                    2,
-                    1
-                ],
-                [
-                    3,
-                    1,
-                    1,
-                    1,
-                    1,
-                    1,
-                    1,
-                    1,
-                    3,
-                    1
-                ],
-                [
-                    4,
-                    1,
-                    0,
-                    0,
-                    1,
-                    0,
-                    1,
-                    0,
-                    1,
-                    2
-                ],
-                [
-                    5,
-                    1,
-                    1,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    2,
-                    2
-                ],
-                [
-                    6,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    3,
-                    2
-                ],
-                [
-                    7,
-                    1,
-                    0,
-                    0,
-                    1,
-                    0,
-                    1,
-                    0,
-                    1,
-                    3
-                ],
-                [
-                    8,
-                    1,
-                    1,
-                    1,
-                    1,
-                    0,
-                    1,
-                    0,
-                    2,
-                    3
-                ],
-                [
-                    9,
-                    1,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    3,
-                    3
-                ],
-                [
-                    10,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    1,
-                    4
-                ],
-                [
-                    11,
-                    1,
-                    1,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    2,
-                    4
-                ],
-                [
-                    12,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    3,
-                    4
-                ]
-            ]
-        },
-        {
-            "type": "table",
-            "database": null,
-            "name": "users_businesselement",
-            "withoutRowId": false,
-            "strict": false,
-            "ddl": "CREATE TABLE \"users_businesselement\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"name\" varchar(100) NOT NULL UNIQUE, \"description\" text NOT NULL)",
-            "columns": [
-                {
-                    "name": "id",
-                    "type": "integer",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "PRIMARY KEY",
-                            "definition": "PRIMARY KEY AUTOINCREMENT"
-                        }
-                    ]
-                },
-                {
-                    "name": "name",
-                    "type": "varchar",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "UNIQUE",
-                            "definition": "UNIQUE"
-                        }
-                    ]
-                },
-                {
-                    "name": "description",
-                    "type": "text",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                }
-            ],
-            "rows": [
-                [
-                    1,
-                    "Users",
-                    "Управление пользователями"
-                ],
-                [
-                    2,
-                    "Items",
-                    "Управление товарами"
-                ],
-                [
-                    3,
-                    "Permissions",
-                    "Управление правилами доступа"
-                ],
-                [
-                    4,
-                    "Orders",
-                    "Управление заказами"
-                ]
-            ]
-        },
-        {
-            "type": "table",
-            "database": null,
-            "name": "users_refreshtoken",
-            "withoutRowId": false,
-            "strict": false,
-            "ddl": "CREATE TABLE \"users_refreshtoken\" (\"id\" char(32) NOT NULL PRIMARY KEY, \"token\" varchar(500) NOT NULL UNIQUE, \"created_at\" datetime NOT NULL, \"expires_at\" datetime NOT NULL, \"is_active\" bool NOT NULL, \"user_id\" bigint NOT NULL REFERENCES \"users_user\" (\"id\") DEFERRABLE INITIALLY DEFERRED)",
-            "columns": [
-                {
-                    "name": "id",
-                    "type": "char",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "PRIMARY KEY",
-                            "definition": "PRIMARY KEY"
-                        }
-                    ]
-                },
-                {
-                    "name": "token",
-                    "type": "varchar",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "UNIQUE",
-                            "definition": "UNIQUE"
-                        }
-                    ]
-                },
-                {
-                    "name": "created_at",
-                    "type": "datetime",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "expires_at",
-                    "type": "datetime",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "is_active",
-                    "type": "bool",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "user_id",
-                    "type": "bigint",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "FOREIGN KEY",
-                            "definition": "REFERENCES \"users_user\" (\"id\") "
-                        }
-                    ]
-                }
-            ],
-            "rows": [
-                [
-                    "1049d4348dca48be910487afe7e97961",
-                    "8UQzvFEZLszJL3o_znpWFN1bJk0mBgXH-p1lsjYUjfcMjv0_ZdH8KFhS97ZEPbl_IVSIe34BG5v-w-shf0ICEbtyylmlk3vQ7wfE8TU_GJ8sl_OqbxN5JluyJ0qWMxr8tafC1ZMt_M322qboU-nEWfV6eJECZ2lVcfH_-T6zq7s",
-                    "2026-01-05 06:42:57.050018",
-                    "2026-02-04 06:42:57.050018",
-                    0,
-                    9
-                ],
-                [
-                    "9f2a2159a5b84d12b0a9d0aee90bdba0",
-                    "1SmTDpTfcUB4RdMAk5VUXlthCILBLRR96qwr5ClmryfIgsM9xJ_VcMvCktHNbO0LOmELGDxlo7j__I9sIccKlLertb50WIUyNT8KQesC5x3lS24dCxWHLW-gBmSj3FKyuMvEh9ivEN5EzVrGIH3a33GW9gQZLGa3B6QrqO8fGus",
-                    "2026-01-05 06:53:44.582971",
-                    "2026-02-04 06:53:44.582971",
-                    0,
-                    9
-                ],
-                [
-                    "702a5161c9084ea18b5b34e01b3519e4",
-                    "EmHKDv3JstPbGNaJLidn-eiTqsRf_W5-0u4tH-L7RsQ_sDFnOg02Mi0aptOii-m76nN1KOBbB4zmg92ZSGHP19IDIEPcSDvDzHBYpPsIVPFtkuMGamu8k70rgMmBJkJM7DGab8weNGFzt7JwfTzOu7A1R78m_5BRDGh-zysk730",
-                    "2026-01-05 06:56:51.514633",
-                    "2026-02-04 06:56:51.514633",
-                    0,
-                    9
-                ],
-                [
-                    "26c36721217545f0b514bb232e903357",
-                    "VaURsR3B1lcDpipKqfo8CathdnMjX8o1VzAh9QYfg4dPt2iIt3SAVzTsP2Nc0OlHCM1xDqjlwDAqWan9PerfbzeAamyzSvhUWQSYqW0dbcCjBsRLLXqqtgQNqXcQTnuXpsm0VcfRyBQnpxXW-3jUcF7QB6JaCUhtbUkqpLcx9qA",
-                    "2026-01-05 06:57:13.224905",
-                    "2026-02-04 06:57:13.224905",
-                    0,
-                    9
-                ],
-                [
-                    "97acab65e65f4bdfb23810dce7c9b23b",
-                    "bkrB22s0xstVCP4oOvUkfQUbAezuz-o6tyJUyVRrGHy47S7rW1NdYB77jhWIxYyFV9qhCZf0MaE3KsbCHpT2UxEPQsHwR2w8yb507qPyo-nHT0bLDTEMvQw0gjSTeWQPZWkfuSZbsKSsNfWZeqt8XLK2dh-b3yKUpPMQmZk7x3I",
-                    "2026-01-05 06:59:21.159327",
-                    "2026-02-04 06:59:21.159001",
-                    0,
-                    9
-                ],
-                [
-                    "c86cdd80bfa746cebf48e5b4ade89bd0",
-                    "uSYzcAGDYQqF_xsfO25HiNP6k6dgTL5VWT6slBhnjpqNS9sqNuSyCNMRCTLTQnFP8cDO-5wDs__HuzxZVvih-zEhT3y9FQEPv-jcDWeS6KZB06Zag1HeA9B_8NhcUCO5_YYaOgZCzDPRl7mZwNk5UIYJ2_EGodwMLfJWrcH9abY",
-                    "2026-01-05 07:03:37.383133",
-                    "2026-01-05 07:49:42.168119",
-                    0,
-                    9
-                ],
-                [
-                    "d6287da5be264dc6bf210b9bcd535286",
-                    "IyYZFh5Md3H1c-n5vNHMgDantTmuV6fm5M1zgPUDzv0tNYwfl5TtTkWHlgvgfJoGnejnndK57h6iEJgw8c5F9-d7_4gorvPsIPEpToXWuLxhZH-oPKM9fCqxivD2MvtrHmZjjmVZgxQoHdtpTYCMYAKRNWs7B66KICb4GwDCJnc",
-                    "2026-01-05 07:24:13.546859",
-                    "2026-02-04 07:24:13.545904",
-                    0,
-                    9
-                ],
-                [
-                    "29936327d6354491bc673ff35fb1a125",
-                    "aurT7EngSKHEgk0kuUqLGkFzAn5XOYv3G0Faf9nLlRpuYmMH_fssyZ8CQWI3uEzLbBaQoAMiBnEwT6NjS0B3a6W9mzqxIgUAEvnO1gVeOhl9GTmdVZsSUlsFX7YAr5s6kX-InBAMXBt7LNiUyF4Badob--Pev-5i6a4-MeVsTxw",
-                    "2026-01-05 07:26:34.885723",
-                    "2026-02-04 07:26:34.885723",
-                    0,
-                    9
-                ],
-                [
-                    "64b66a51233b46059ae4f974bb79b72f",
-                    "9OSliVwiiv1PZoz5I_ZObPlPcVdvv4RXoDbh6HkGrblwYxU8S_I15HefJWSvl6ybHElRV9kkAur9eN4qO7dKzroQbcE0Vib3JrFghWeZPnPQ-xHACGmc71HgUcGml0WXpveGqZ4mL8GkIkA0XQpDq6jiCnAa_GVxSnJFvd1sq-w",
-                    "2026-01-05 07:28:06.693391",
-                    "2026-02-04 07:28:06.692390",
-                    0,
-                    9
-                ],
-                [
-                    "cb3f0d56673349b580a68d78ceeb92e0",
-                    "PLfU9W6OlvDM1W8QSTv3IRDMETy5qhbNlbxrYs6bd4Wf8Y-_Xky8V6AF8B8W7iFYyAccLAb1wZF2vFzzKRr5nHvbqeNwYmi0SrR8hSm00Gc1MOeUyB0hCmRMnK_Js4WnHXTCXj1mbaxand8NbKtbvRb7JY_xYTD58BshPGCGLoA",
-                    "2026-01-05 07:38:18.070701",
-                    "2026-02-04 07:38:18.070701",
-                    0,
-                    9
-                ],
-                [
-                    "16fc6d60b9864a29adbbbbb1d0eea636",
-                    "CtQ_T-QW1DzUgQch5No3SgubqPCQeawhqAi-zDTUt-uR_WpduXJ-gDmEk6E5cM_TvxlpX1p_pp8lStU_1Ty8OGY4EI-EuzJtalNE2lArmXl3ocAPkdctq4A-p096RHbe2iP8F2uP7mJSx8kDK5GKtsRArQqrNJcQ9wFdHY8b0mQ",
-                    "2026-01-05 07:44:18.161765",
-                    "2026-01-05 07:45:44.561765",
-                    0,
-                    9
-                ],
-                [
-                    "585f04ecb43b41428d32357d5d749ee7",
-                    "l41dq0Rtb-WretFHsawVyD_sXaO2Mt2NnjGQvYlGbLl-IykTu9psM5-E2nnsCeN_0uWSRyQFyxBUc-7o4uphhIomXE3TTpRfzmX2wvC8MDDVr69EIq6Cu_-kwol060Rl4JS62e1ZeVoaxbDeHJ6Xz7VjQmwb61oJQC3qhr9WDzk",
-                    "2026-01-05 07:45:46.978872",
-                    "2026-01-05 07:47:13.378872",
-                    0,
-                    9
-                ],
-                [
-                    "1e9b6e4af4614824a02f23c710f140f6",
-                    "AqWsBrdRimvZG1PR_sMo4XgHYmBHZITqS54yOXFGaUZ2i_h2fcxvQv7Um6zaRZlyJgW64_x1NLs5QsHYhWZ7gA5UXd76RQugDEgR0ROcF7ip2DGw5o1GaeOs7lTi4Bku5yUD38UCmqkCcpzDy_QdLlMsfnv-j7HtEnmCglWV0ng",
-                    "2026-01-05 07:46:47.376560",
-                    "2026-01-05 07:48:13.776560",
-                    0,
-                    9
-                ],
-                [
-                    "11d6061e1cdb4e6b95e403422ee3acb2",
-                    "-OisjBXJWCpkRh4E62VEknaFlXwoRuXbZAD7WNj1x4xzwPjDoZ8pe_3Q_ejdQy2ZBMMJvvZx_z_xAmSldLhb9bYLwIZK54Ve0R6JugFBA9TkxSeBU7IEUAAUOzkhDzAccAwILAY9S0bFFfWnn5-FtomztlG_PEawF0lPINFHcAo",
-                    "2026-01-05 07:47:45.437047",
-                    "2026-01-12 07:47:45.437047",
-                    0,
-                    9
-                ],
-                [
-                    "ff8875756ca4420d8723a25af1e1d403",
-                    "jcHmuOAB1nS13NpNbcvBGwIy2EsR7aikDz-rEZ-A9zePtrP60lnxNbN5lpadDbt0gusplgg_xKScc5_cuJ_Rz0X4vEfZeGBKYLOVtx8sHnrsTLF0yc7m0gGQ8_nmbixv8uaj-s5FSAWzaLjQCgcaC3eLjPF0rxxp5WzFwZ46j-c",
-                    "2026-01-05 07:49:32.209763",
-                    "2026-01-12 07:49:32.209763",
-                    0,
-                    9
-                ],
-                [
-                    "63a512abd5f042f2a1acc4991a2846d3",
-                    "yCg1mwV70XeI_iJBJdkjVUb-NEj73D6KjPoPzxV5nElJvGBjGvltNNV0Ia7eytMBikkIQMV5_9ZJcvxA6JczEWW_Ft0LLCMcaj6AFKoWNqdgw4U2P8KKR-MwPhdeg2qgJer4wlhypjoyWYoBRJYuXEFofqVMV_K_1pXUBVROkrg",
-                    "2026-01-05 07:49:43.517125",
-                    "2026-01-12 07:49:43.517125",
-                    0,
-                    9
-                ],
-                [
-                    "5f14af9092c74830b992ca8b1a6877ce",
-                    "d0gtqr6muSvjKy8PmRqkqWHorkKFYDViwVoiQ5YKz3oWspmdwdd6_sxj7VTG8phEewl7_LkfC3gu2Z2KGoYoYF-PO9dL2zoczxOJsE5ISqJQdUsEjGaZAOrzW9Ij-T7SXXVCu6lYwolw83srYL8fkvXvLzl_fzbPSktMonVeUV4",
-                    "2026-01-05 11:01:16.259910",
-                    "2026-01-12 11:01:16.259910",
-                    0,
-                    9
-                ],
-                [
-                    "14bf78ab2af44576936e887d1b20018c",
-                    "F0gBdH7YKjIFV7oRERbpR-PM4gPCDQFOLTrCsNB9gKx0gCGIa3z7-XBs4cCHDKVwmZkMOZwnzvLITqpFGjxsLKHQvbqBLMT5Gr89dzA84pFKO0HbG6wKQSM2OPZXtRPSfW8_O02PFsgnWdC4HTDBrpk3sOy04dOgT6WROZUKFTE",
-                    "2026-01-05 11:02:52.635525",
-                    "2026-01-12 11:02:52.635525",
-                    0,
-                    9
-                ],
-                [
-                    "86d8f11de86442488f307d62f4163993",
-                    "OO8tVWWwHVkIavgoxjt-NY9-iV_gDu0ROe_4zNo6gabOwgLSnQy6WtTxYWdu4-NZKLYW8w1w6K7mW605emtqrD3rFW0nJQrZz-BrzZbWGPeVGRVZC9JX_cxKLSpW_91PctsQEE6VzK-E_TJbMVHf0gRw55xlaLFN2CdLRQCYZpA",
-                    "2026-01-05 11:03:38.755283",
-                    "2026-01-12 11:03:38.755283",
-                    1,
-                    3
-                ]
-            ]
-        },
-        {
-            "type": "table",
-            "database": null,
-            "name": "users_role",
-            "withoutRowId": false,
-            "strict": false,
-            "ddl": "CREATE TABLE \"users_role\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"name\" varchar(50) NOT NULL UNIQUE, \"description\" text NOT NULL)",
-            "columns": [
-                {
-                    "name": "id",
-                    "type": "integer",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "PRIMARY KEY",
-                            "definition": "PRIMARY KEY AUTOINCREMENT"
-                        }
-                    ]
-                },
-                {
-                    "name": "name",
-                    "type": "varchar",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "UNIQUE",
-                            "definition": "UNIQUE"
-                        }
-                    ]
-                },
-                {
-                    "name": "description",
-                    "type": "text",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                }
-            ],
-            "rows": [
-                [
-                    1,
-                    "Admin",
-                    "Полный доступ ко всему"
-                ],
-                [
-                    2,
-                    "User",
-                    "Обычный пользователь"
-                ],
-                [
-                    3,
-                    "Manager",
-                    "Управление товарами"
-                ],
-                [
-                    4,
-                    "Guest",
-                    ""
-                ]
-            ]
-        },
-        {
-            "type": "table",
-            "database": null,
-            "name": "users_session",
-            "withoutRowId": false,
-            "strict": false,
-            "ddl": "CREATE TABLE users_session (id char (32) NOT NULL PRIMARY KEY, session_key varchar (255) NOT NULL UNIQUE, created_at datetime NOT NULL, expires_at datetime NOT NULL, is_active bool NOT NULL, user_id bigint NOT NULL REFERENCES users_user (id) DEFERRABLE INITIALLY DEFERRED)",
-            "columns": [
-                {
-                    "name": "id",
-                    "type": "char",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "PRIMARY KEY",
-                            "definition": "PRIMARY KEY"
-                        }
-                    ]
-                },
-                {
-                    "name": "session_key",
-                    "type": "varchar",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "UNIQUE",
-                            "definition": "UNIQUE"
-                        }
-                    ]
-                },
-                {
-                    "name": "created_at",
-                    "type": "datetime",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "expires_at",
-                    "type": "datetime",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "is_active",
-                    "type": "bool",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "user_id",
-                    "type": "bigint",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "FOREIGN KEY",
-                            "definition": "REFERENCES users_user (id) "
-                        }
-                    ]
-                }
-            ],
-            "rows": [
-            ]
-        },
-        {
-            "type": "table",
-            "database": null,
-            "name": "users_user",
-            "withoutRowId": false,
-            "strict": false,
-            "ddl": "CREATE TABLE \"users_user\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"password\" varchar(128) NOT NULL, \"last_login\" datetime NULL, \"is_superuser\" bool NOT NULL, \"is_staff\" bool NOT NULL, \"is_active\" bool NOT NULL, \"date_joined\" datetime NOT NULL, \"email\" varchar(254) NOT NULL UNIQUE, \"username\" char(32) NOT NULL UNIQUE, \"patronymic\" varchar(150) NULL, \"photo\" varchar(100) NULL, \"first_name\" varchar(150) NOT NULL, \"last_name\" varchar(150) NOT NULL, \"role_id\" bigint NOT NULL REFERENCES \"users_role\" (\"id\") DEFERRABLE INITIALLY DEFERRED)",
-            "columns": [
-                {
-                    "name": "id",
-                    "type": "integer",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "PRIMARY KEY",
-                            "definition": "PRIMARY KEY AUTOINCREMENT"
-                        }
-                    ]
-                },
-                {
-                    "name": "password",
-                    "type": "varchar",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "last_login",
-                    "type": "datetime",
-                    "constraints": [
-                        {
-                            "type": null,
-                            "definition": "NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "is_superuser",
-                    "type": "bool",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "is_staff",
-                    "type": "bool",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "is_active",
-                    "type": "bool",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "date_joined",
-                    "type": "datetime",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "email",
-                    "type": "varchar",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "UNIQUE",
-                            "definition": "UNIQUE"
-                        }
-                    ]
-                },
-                {
-                    "name": "username",
-                    "type": "char",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "UNIQUE",
-                            "definition": "UNIQUE"
-                        }
-                    ]
-                },
-                {
-                    "name": "patronymic",
-                    "type": "varchar",
-                    "constraints": [
-                        {
-                            "type": null,
-                            "definition": "NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "photo",
-                    "type": "varchar",
-                    "constraints": [
-                        {
-                            "type": null,
-                            "definition": "NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "first_name",
-                    "type": "varchar",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "last_name",
-                    "type": "varchar",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL"
-                        }
-                    ]
-                },
-                {
-                    "name": "role_id",
-                    "type": "bigint",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "FOREIGN KEY",
-                            "definition": "REFERENCES \"users_role\" (\"id\") "
-                        }
-                    ]
-                }
-            ],
-            "rows": [
-                [
-                    3,
-                    "$2b$12$Fvn4hgO0C7fGMt1IdSEjwudTkl3cERUoeCjbIr.ob23yeWlKR2G.2",
-                    null,
-                    0,
-                    0,
-                    1,
-                    "2026-01-03 19:39:36.227313",
-                    "test1@test.com",
-                    "8090a9c334cb48ab9621a635619049ce",
-                    "Иванович",
-                    "",
-                    "Иван",
-                    "Иванов",
-                    3
-                ],
-                [
-                    5,
-                    "$2b$12$64rUtr3.9bScxL0fSM.E.ud5mJk89bteWukrqTfk\/vWnrQa5lgGBu",
-                    null,
-                    0,
-                    0,
-                    1,
-                    "2026-01-03 19:54:12.135850",
-                    "test2@test.com",
-                    "1d5e96479fc7442198ebcc7105d3f86b",
-                    "Алексеевич",
-                    "",
-                    "Алексей",
-                    "Алексеев",
-                    3
-                ],
-                [
-                    6,
-                    "$2b$12$oRk5qhKmLwnhuNehGROV6erFXP.cBERXO68ty2Xa74yJJAQ490W8.",
-                    null,
-                    0,
-                    0,
-                    1,
-                    "2026-01-03 19:55:06.759891",
-                    "test3@test.com",
-                    "d4ef937464264ab38fa7341a766c014e",
-                    "Олегович",
-                    "",
-                    "Олег",
-                    "Олегов",
-                    3
-                ],
-                [
-                    9,
-                    "$2b$12$yeo7OiL0qtyQymAsTA1cXeHFzij9AID\/ZkNK7QHcJkTB17yQkpAoy",
-                    "2026-01-05 05:26:09.334460",
-                    1,
-                    1,
-                    1,
-                    "2026-01-03 20:30:21.036502",
-                    "root@root.com",
-                    "3d144e54c5af4c478f2cabffd8d30bc7",
-                    null,
-                    "",
-                    "Админ",
-                    "Админов",
-                    1
-                ],
-                [
-                    12,
-                    "$2b$12$heAcs7Dgcnsx3aRehTuubuGv3fmiC9NuXEOIWs1kR8ebqBrzVlBSi",
-                    null,
-                    0,
-                    0,
-                    1,
-                    "2026-01-04 15:39:41.251626",
-                    "user@test.com",
-                    "121034265bfa48dba70d0eed5c2b12a5",
-                    null,
-                    "",
-                    "Покупатель",
-                    "Покупатель",
-                    2
-                ],
-                [
-                    13,
-                    "$2b$12$7FixPGB\/QiQWZmbze2xuW.6ZkUTgzz4l0wge\/MMi\/ty8CjDdzWWVG",
-                    null,
-                    0,
-                    0,
-                    1,
-                    "2026-01-04 15:51:37.499156",
-                    "guest@test.com",
-                    "da83898a5e944c02976b0554ee16202e",
-                    null,
-                    "",
-                    "Гость",
-                    "Гость",
-                    4
-                ]
-            ]
-        },
-        {
-            "type": "table",
-            "database": null,
-            "name": "users_user_groups",
-            "withoutRowId": false,
-            "strict": false,
-            "ddl": "CREATE TABLE \"users_user_groups\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"user_id\" bigint NOT NULL REFERENCES \"users_user\" (\"id\") DEFERRABLE INITIALLY DEFERRED, \"group_id\" integer NOT NULL REFERENCES \"auth_group\" (\"id\") DEFERRABLE INITIALLY DEFERRED)",
-            "columns": [
-                {
-                    "name": "id",
-                    "type": "integer",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "PRIMARY KEY",
-                            "definition": "PRIMARY KEY AUTOINCREMENT"
-                        }
-                    ]
-                },
-                {
-                    "name": "user_id",
-                    "type": "bigint",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "FOREIGN KEY",
-                            "definition": "REFERENCES \"users_user\" (\"id\") "
-                        }
-                    ]
-                },
-                {
-                    "name": "group_id",
-                    "type": "integer",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "FOREIGN KEY",
-                            "definition": "REFERENCES \"auth_group\" (\"id\") "
-                        }
-                    ]
-                }
-            ],
-            "rows": [
-            ]
-        },
-        {
-            "type": "table",
-            "database": null,
-            "name": "users_user_user_permissions",
-            "withoutRowId": false,
-            "strict": false,
-            "ddl": "CREATE TABLE \"users_user_user_permissions\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"user_id\" bigint NOT NULL REFERENCES \"users_user\" (\"id\") DEFERRABLE INITIALLY DEFERRED, \"permission_id\" integer NOT NULL REFERENCES \"auth_permission\" (\"id\") DEFERRABLE INITIALLY DEFERRED)",
-            "columns": [
-                {
-                    "name": "id",
-                    "type": "integer",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "PRIMARY KEY",
-                            "definition": "PRIMARY KEY AUTOINCREMENT"
-                        }
-                    ]
-                },
-                {
-                    "name": "user_id",
-                    "type": "bigint",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "FOREIGN KEY",
-                            "definition": "REFERENCES \"users_user\" (\"id\") "
-                        }
-                    ]
-                },
-                {
-                    "name": "permission_id",
-                    "type": "integer",
-                    "constraints": [
-                        {
-                            "type": "NOT NULL",
-                            "definition": "NOT NULL "
-                        },
-                        {
-                            "type": "FOREIGN KEY",
-                            "definition": "REFERENCES \"auth_permission\" (\"id\") "
-                        }
-                    ]
-                }
-            ],
-            "rows": [
-            ]
-        },
-        {
-            "type": "index",
-            "database": null,
-            "name": "auth_group_permissions_group_id_b120cbf9",
-            "unique": false,
-            "ddl": "CREATE INDEX \"auth_group_permissions_group_id_b120cbf9\" ON \"auth_group_permissions\" (\"group_id\")"
-        },
-        {
-            "type": "index",
-            "database": null,
-            "name": "auth_group_permissions_group_id_permission_id_0cd325b0_uniq",
-            "unique": true,
-            "ddl": "CREATE UNIQUE INDEX \"auth_group_permissions_group_id_permission_id_0cd325b0_uniq\" ON \"auth_group_permissions\" (\"group_id\", \"permission_id\")"
-        },
-        {
-            "type": "index",
-            "database": null,
-            "name": "auth_group_permissions_permission_id_84c5c92e",
-            "unique": false,
-            "ddl": "CREATE INDEX \"auth_group_permissions_permission_id_84c5c92e\" ON \"auth_group_permissions\" (\"permission_id\")"
-        },
-        {
-            "type": "index",
-            "database": null,
-            "name": "auth_permission_content_type_id_2f476e4b",
-            "unique": false,
-            "ddl": "CREATE INDEX \"auth_permission_content_type_id_2f476e4b\" ON \"auth_permission\" (\"content_type_id\")"
-        },
-        {
-            "type": "index",
-            "database": null,
-            "name": "auth_permission_content_type_id_codename_01ab375a_uniq",
-            "unique": true,
-            "ddl": "CREATE UNIQUE INDEX \"auth_permission_content_type_id_codename_01ab375a_uniq\" ON \"auth_permission\" (\"content_type_id\", \"codename\")"
-        },
-        {
-            "type": "index",
-            "database": null,
-            "name": "django_admin_log_content_type_id_c4bce8eb",
-            "unique": false,
-            "ddl": "CREATE INDEX \"django_admin_log_content_type_id_c4bce8eb\" ON \"django_admin_log\" (\"content_type_id\")"
-        },
-        {
-            "type": "index",
-            "database": null,
-            "name": "django_admin_log_user_id_c564eba6",
-            "unique": false,
-            "ddl": "CREATE INDEX \"django_admin_log_user_id_c564eba6\" ON \"django_admin_log\" (\"user_id\")"
-        },
-        {
-            "type": "index",
-            "database": null,
-            "name": "django_content_type_app_label_model_76bd3d3b_uniq",
-            "unique": true,
-            "ddl": "CREATE UNIQUE INDEX \"django_content_type_app_label_model_76bd3d3b_uniq\" ON \"django_content_type\" (\"app_label\", \"model\")"
-        },
-        {
-            "type": "index",
-            "database": null,
-            "name": "django_session_expire_date_a5c62663",
-            "unique": false,
-            "ddl": "CREATE INDEX \"django_session_expire_date_a5c62663\" ON \"django_session\" (\"expire_date\")"
-        },
-        {
-            "type": "index",
-            "database": null,
-            "name": "shop_item_category_id_cfe8abac",
-            "unique": false,
-            "ddl": "CREATE INDEX \"shop_item_category_id_cfe8abac\" ON \"shop_item\" (\"category_id\")"
-        },
-        {
-            "type": "index",
-            "database": null,
-            "name": "shop_item_owner_id_5636367b",
-            "unique": false,
-            "ddl": "CREATE INDEX \"shop_item_owner_id_5636367b\" ON \"shop_item\" (\"owner_id\")"
-        },
-        {
-            "type": "index",
-            "database": null,
-            "name": "users_accessrolerule_element_id_4b8b6547",
-            "unique": false,
-            "ddl": "CREATE INDEX \"users_accessrolerule_element_id_4b8b6547\" ON \"users_accessrolerule\" (\"element_id\")"
-        },
-        {
-            "type": "index",
-            "database": null,
-            "name": "users_accessrolerule_role_id_3cd0f5f1",
-            "unique": false,
-            "ddl": "CREATE INDEX \"users_accessrolerule_role_id_3cd0f5f1\" ON \"users_accessrolerule\" (\"role_id\")"
-        },
-        {
-            "type": "index",
-            "database": null,
-            "name": "users_refreshtoken_user_id_2df68a14",
-            "unique": false,
-            "ddl": "CREATE INDEX \"users_refreshtoken_user_id_2df68a14\" ON \"users_refreshtoken\" (\"user_id\")"
-        },
-        {
-            "type": "index",
-            "database": null,
-            "name": "users_session_user_id_6da579eb",
-            "unique": false,
-            "ddl": "CREATE INDEX users_session_user_id_6da579eb ON users_session (\"user_id\")"
-        },
-        {
-            "type": "index",
-            "database": null,
-            "name": "users_user_groups_group_id_9afc8d0e",
-            "unique": false,
-            "ddl": "CREATE INDEX \"users_user_groups_group_id_9afc8d0e\" ON \"users_user_groups\" (\"group_id\")"
-        },
-        {
-            "type": "index",
-            "database": null,
-            "name": "users_user_groups_user_id_5f6f5a90",
-            "unique": false,
-            "ddl": "CREATE INDEX \"users_user_groups_user_id_5f6f5a90\" ON \"users_user_groups\" (\"user_id\")"
-        },
-        {
-            "type": "index",
-            "database": null,
-            "name": "users_user_groups_user_id_group_id_b88eab82_uniq",
-            "unique": true,
-            "ddl": "CREATE UNIQUE INDEX \"users_user_groups_user_id_group_id_b88eab82_uniq\" ON \"users_user_groups\" (\"user_id\", \"group_id\")"
-        },
-        {
-            "type": "index",
-            "database": null,
-            "name": "users_user_role_id_854f2687",
-            "unique": false,
-            "ddl": "CREATE INDEX \"users_user_role_id_854f2687\" ON \"users_user\" (\"role_id\")"
-        },
-        {
-            "type": "index",
-            "database": null,
-            "name": "users_user_user_permissions_permission_id_0b93982e",
-            "unique": false,
-            "ddl": "CREATE INDEX \"users_user_user_permissions_permission_id_0b93982e\" ON \"users_user_user_permissions\" (\"permission_id\")"
-        },
-        {
-            "type": "index",
-            "database": null,
-            "name": "users_user_user_permissions_user_id_20aca447",
-            "unique": false,
-            "ddl": "CREATE INDEX \"users_user_user_permissions_user_id_20aca447\" ON \"users_user_user_permissions\" (\"user_id\")"
-        },
-        {
-            "type": "index",
-            "database": null,
-            "name": "users_user_user_permissions_user_id_permission_id_43338c45_uniq",
-            "unique": true,
-            "ddl": "CREATE UNIQUE INDEX \"users_user_user_permissions_user_id_permission_id_43338c45_uniq\" ON \"users_user_user_permissions\" (\"user_id\", \"permission_id\")"
-        }
-    ]
-}
+[
+  {
+    "model": "users.role",
+    "pk": 1,
+    "fields": {
+      "name": "Admin",
+      "description": "Полный доступ ко всему"
+    }
+  },
+  {
+    "model": "users.role",
+    "pk": 2,
+    "fields": {
+      "name": "User",
+      "description": "Обычный пользователь"
+    }
+  },
+  {
+    "model": "users.role",
+    "pk": 3,
+    "fields": {
+      "name": "Manager",
+      "description": "Управление товарами"
+    }
+  },
+  {
+    "model": "users.role",
+    "pk": 4,
+    "fields": {
+      "name": "Guest",
+      "description": ""
+    }
+  },
+  {
+    "model": "users.businesselement",
+    "pk": 1,
+    "fields": {
+      "name": "Users",
+      "description": "Управление пользователями"
+    }
+  },
+  {
+    "model": "users.businesselement",
+    "pk": 2,
+    "fields": {
+      "name": "Items",
+      "description": "Управление товарами"
+    }
+  },
+  {
+    "model": "users.businesselement",
+    "pk": 3,
+    "fields": {
+      "name": "Permissions",
+      "description": "Управление правилами доступа"
+    }
+  },
+  {
+    "model": "users.businesselement",
+    "pk": 4,
+    "fields": {
+      "name": "Orders",
+      "description": "Управление заказами"
+    }
+  },
+  {
+    "model": "users.accessrolerule",
+    "pk": 1,
+    "fields": {
+      "role": 1,
+      "element": 1,
+      "read_permission": true,
+      "read_all_permission": true,
+      "create_permission": true,
+      "update_permission": true,
+      "update_all_permission": true,
+      "delete_permission": true,
+      "delete_all_permission": true
+    }
+  },
+  {
+    "model": "users.accessrolerule",
+    "pk": 2,
+    "fields": {
+      "role": 1,
+      "element": 2,
+      "read_permission": true,
+      "read_all_permission": true,
+      "create_permission": true,
+      "update_permission": true,
+      "update_all_permission": true,
+      "delete_permission": true,
+      "delete_all_permission": true
+    }
+  },
+  {
+    "model": "users.accessrolerule",
+    "pk": 3,
+    "fields": {
+      "role": 1,
+      "element": 3,
+      "read_permission": true,
+      "read_all_permission": true,
+      "create_permission": true,
+      "update_permission": true,
+      "update_all_permission": true,
+      "delete_permission": true,
+      "delete_all_permission": true
+    }
+  },
+  {
+    "model": "users.accessrolerule",
+    "pk": 4,
+    "fields": {
+      "role": 2,
+      "element": 1,
+      "read_permission": true,
+      "read_all_permission": false,
+      "create_permission": false,
+      "update_permission": true,
+      "update_all_permission": false,
+      "delete_permission": true,
+      "delete_all_permission": false
+    }
+  },
+  {
+    "model": "users.accessrolerule",
+    "pk": 5,
+    "fields": {
+      "role": 2,
+      "element": 2,
+      "read_permission": true,
+      "read_all_permission": true,
+      "create_permission": false,
+      "update_permission": false,
+      "update_all_permission": false,
+      "delete_permission": false,
+      "delete_all_permission": false
+    }
+  },
+  {
+    "model": "users.accessrolerule",
+    "pk": 6,
+    "fields": {
+      "role": 2,
+      "element": 3,
+      "read_permission": false,
+      "read_all_permission": false,
+      "create_permission": false,
+      "update_permission": false,
+      "update_all_permission": false,
+      "delete_permission": false,
+      "delete_all_permission": false
+    }
+  },
+  {
+    "model": "users.accessrolerule",
+    "pk": 7,
+    "fields": {
+      "role": 3,
+      "element": 1,
+      "read_permission": true,
+      "read_all_permission": false,
+      "create_permission": false,
+      "update_permission": true,
+      "update_all_permission": false,
+      "delete_permission": true,
+      "delete_all_permission": false
+    }
+  },
+  {
+    "model": "users.accessrolerule",
+    "pk": 8,
+    "fields": {
+      "role": 3,
+      "element": 2,
+      "read_permission": true,
+      "read_all_permission": true,
+      "create_permission": true,
+      "update_permission": true,
+      "update_all_permission": false,
+      "delete_permission": true,
+      "delete_all_permission": false
+    }
+  },
+  {
+    "model": "users.accessrolerule",
+    "pk": 9,
+    "fields": {
+      "role": 3,
+      "element": 3,
+      "read_permission": true,
+      "read_all_permission": false,
+      "create_permission": false,
+      "update_permission": false,
+      "update_all_permission": false,
+      "delete_permission": false,
+      "delete_all_permission": false
+    }
+  },
+  {
+    "model": "users.accessrolerule",
+    "pk": 10,
+    "fields": {
+      "role": 4,
+      "element": 1,
+      "read_permission": false,
+      "read_all_permission": false,
+      "create_permission": false,
+      "update_permission": false,
+      "update_all_permission": false,
+      "delete_permission": false,
+      "delete_all_permission": false
+    }
+  },
+  {
+    "model": "users.accessrolerule",
+    "pk": 11,
+    "fields": {
+      "role": 4,
+      "element": 2,
+      "read_permission": true,
+      "read_all_permission": true,
+      "create_permission": false,
+      "update_permission": false,
+      "update_all_permission": false,
+      "delete_permission": false,
+      "delete_all_permission": false
+    }
+  },
+  {
+    "model": "users.accessrolerule",
+    "pk": 12,
+    "fields": {
+      "role": 4,
+      "element": 3,
+      "read_permission": false,
+      "read_all_permission": false,
+      "create_permission": false,
+      "update_permission": false,
+      "update_all_permission": false,
+      "delete_permission": false,
+      "delete_all_permission": false
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+      "password": "$2b$12$Fvn4hgO0C7fGMt1IdSEjwudTkl3cERUoeCjbIr.ob23yeWlKR2G.2",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-01-03T19:39:36.227Z",
+      "email": "test1@test.com",
+      "username": "8090a9c3-34cb-48ab-9621-a635619049ce",
+      "patronymic": "Иванович",
+      "photo": "",
+      "first_name": "Иван",
+      "last_name": "Иванов",
+      "role": 3,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 5,
+    "fields": {
+      "password": "$2b$12$64rUtr3.9bScxL0fSM.E.ud5mJk89bteWukrqTfk/vWnrQa5lgGBu",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-01-03T19:54:12.135Z",
+      "email": "test2@test.com",
+      "username": "1d5e9647-9fc7-4421-98eb-cc7105d3f86b",
+      "patronymic": "Алексеевич",
+      "photo": "",
+      "first_name": "Алексей",
+      "last_name": "Алексеев",
+      "role": 3,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 6,
+    "fields": {
+      "password": "$2b$12$oRk5qhKmLwnhuNehGROV6erFXP.cBERXO68ty2Xa74yJJAQ490W8.",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-01-03T19:55:06.759Z",
+      "email": "test3@test.com",
+      "username": "d4ef9374-6426-4ab3-8fa7-341a766c014e",
+      "patronymic": "Олегович",
+      "photo": "",
+      "first_name": "Олег",
+      "last_name": "Олегов",
+      "role": 3,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 9,
+    "fields": {
+      "password": "$2b$12$yeo7OiL0qtyQymAsTA1cXeHFzij9AID/ZkNK7QHcJkTB17yQkpAoy",
+      "last_login": "2026-01-05T05:26:09.334Z",
+      "is_superuser": true,
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2026-01-03T20:30:21.036Z",
+      "email": "root@root.com",
+      "username": "3d144e54-c5af-4c47-8f2c-abffd8d30bc7",
+      "patronymic": null,
+      "photo": "",
+      "first_name": "Админ",
+      "last_name": "Админов",
+      "role": 1,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 12,
+    "fields": {
+      "password": "$2b$12$heAcs7Dgcnsx3aRehTuubuGv3fmiC9NuXEOIWs1kR8ebqBrzVlBSi",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-01-04T15:39:41.251Z",
+      "email": "user@test.com",
+      "username": "12103426-5bfa-48db-a70d-0eed5c2b12a5",
+      "patronymic": null,
+      "photo": "",
+      "first_name": "Покупатель",
+      "last_name": "Покупатель",
+      "role": 2,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 13,
+    "fields": {
+      "password": "$2b$12$7FixPGB/QiQWZmbze2xuW.6ZkUTgzz4l0wge/MMi/ty8CjDdzWWVG",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-01-04T15:51:37.499Z",
+      "email": "guest@test.com",
+      "username": "da83898a-5e94-4c02-976b-0554ee16202e",
+      "patronymic": null,
+      "photo": "",
+      "first_name": "Гость",
+      "last_name": "Гость",
+      "role": 4,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "shop.item",
+    "pk": 4,
+    "fields": {
+      "name": "Оливье",
+      "price": "499.99",
+      "description": "Закусочный салат русской кухни из отварных корнеплодов, солёных огурцов, яиц с мясом или варёной колбасой в майонезной заправке.",
+      "owner": 3,
+      "created_at": "2026-01-03T19:41:55.655Z",
+      "updated_at": "2026-01-03T19:41:55.655Z",
+      "is_available": true,
+      "image": "items/2026/01/03/оливье.png",
+      "category": 2,
+      "slug": "olivie"
+    }
+  },
+  {
+    "model": "shop.item",
+    "pk": 5,
+    "fields": {
+      "name": "Новогодний чай",
+      "price": "9.99",
+      "description": "Напиток, который ассоциируется с новогодним праздником, может быть частью праздничного декора или подарком. За отзыв мы готовы добавить кубик сахара.",
+      "owner": 3,
+      "created_at": "2026-01-03T19:44:52.904Z",
+      "updated_at": "2026-01-03T19:44:52.904Z",
+      "is_available": true,
+      "image": "items/2026/01/03/кружка_чая.jpg",
+      "category": 2,
+      "slug": "tea"
+    }
+  },
+  {
+    "model": "shop.item",
+    "pk": 6,
+    "fields": {
+      "name": "Морская свинка Иван",
+      "price": "999.99",
+      "description": "Морская свинка Иван — приятный молодой грызун вид, одомашненных грызунов из рода свинок семейства свинковых.",
+      "owner": 3,
+      "created_at": "2026-01-03T19:47:45.063Z",
+      "updated_at": "2026-01-03T19:47:45.063Z",
+      "is_available": true,
+      "image": "items/2026/01/03/морская_свинка.jpg",
+      "category": 5,
+      "slug": "ivan-morska9-svinka"
+    }
+  },
+  {
+    "model": "shop.item",
+    "pk": 7,
+    "fields": {
+      "name": "Дед Мороз",
+      "price": "2026.00",
+      "description": "Это новогодняя игрушка, которая может использоваться как декоративный элемент, часть праздничного сценария или фотозоны.",
+      "owner": 6,
+      "created_at": "2026-01-03T19:56:46.247Z",
+      "updated_at": "2026-01-03T20:15:28.764Z",
+      "is_available": true,
+      "image": "items/2026/01/03/дед_мороз.jpg",
+      "category": 1,
+      "slug": "ded-moroz"
+    }
+  },
+  {
+    "model": "shop.item",
+    "pk": 8,
+    "fields": {
+      "name": "Новогодние ёлочки",
+      "price": "200.00",
+      "description": "Самодельные новогодние игрушки в виде ёлочки",
+      "owner": 6,
+      "created_at": "2026-01-03T20:11:37.318Z",
+      "updated_at": "2026-01-03T20:11:37.318Z",
+      "is_available": true,
+      "image": "items/2026/01/03/ёлочки.jpg",
+      "category": 1,
+      "slug": "toys"
+    }
+  },
+  {
+    "model": "shop.item",
+    "pk": 9,
+    "fields": {
+      "name": "Гарри Поттер",
+      "price": "777.00",
+      "description": "Игрушка Гарри Поттера",
+      "owner": 6,
+      "created_at": "2026-01-03T20:13:53.304Z",
+      "updated_at": "2026-01-03T20:13:53.304Z",
+      "is_available": true,
+      "image": "items/2026/01/03/Гарри_Поттер.jpg",
+      "category": 1,
+      "slug": "garry"
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 1,
+    "fields": {
+      "name": "Игрушки",
+      "slug": "toys"
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 2,
+    "fields": {
+      "name": "Еда",
+      "slug": "food"
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 3,
+    "fields": {
+      "name": "Одежда",
+      "slug": "clothes"
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 4,
+    "fields": {
+      "name": "Мебель",
+      "slug": "furniture"
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 5,
+    "fields": {
+      "name": "Животные",
+      "slug": "animals"
+    }
+  }
+]
