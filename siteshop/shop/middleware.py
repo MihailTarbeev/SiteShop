@@ -12,7 +12,6 @@ class JWTAuthenticationMiddleware:
 
         request.user = AnonymousUser()
 
-        # Получаем заголовок Authorization
         auth_header = request.META.get('HTTP_AUTHORIZATION', '')
 
         if auth_header.startswith('Bearer '):

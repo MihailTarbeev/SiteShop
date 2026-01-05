@@ -1,12 +1,10 @@
 from django.utils.deprecation import MiddlewareMixin
-from .models import Session, User
-from datetime import datetime
+from .models import Session
 from django.utils import timezone
 from django.contrib.auth.models import AnonymousUser
-from django.contrib.auth import get_user
 
 
-class AuthMiddleware(MiddlewareMixin):
+class SessionAuthMiddleware(MiddlewareMixin):
     def process_request(self, request):
         session_key = request.COOKIES.get('sessionid')
         request.custom_session = None
@@ -27,4 +25,4 @@ class AuthMiddleware(MiddlewareMixin):
             except Session.DoesNotExist:
                 pass
         else:
-            request.user = get_user(request)
+            request.user = AnonymousUser()
