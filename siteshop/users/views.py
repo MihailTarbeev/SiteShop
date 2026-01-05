@@ -128,3 +128,8 @@ class UpdateRuleAPI(generics.RetrieveUpdateAPIView):
     queryset = AccessRoleRule.objects.all()
     serializer_class = AccessRoleRuleSerializer
     permission_classes = [IsAdminUser]
+
+
+class AboutApi(View):
+    def get(self, request):
+        return render(request, 'users/about_api.html', {"title": "Про API"})

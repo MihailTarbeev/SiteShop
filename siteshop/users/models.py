@@ -179,28 +179,6 @@ class User(AbstractUser):
         except (BusinessElement.DoesNotExist, AccessRoleRule.DoesNotExist):
             return False
 
-    def can_update_item(self, item):
-        """Может ли обновить товар: владелец+update_permission ИЛИ update_all_permission"""
-        # Проверяем право на обновление всех
-        if self.has_permission_field('Items', 'update_all_permission'):
-            return True
-
-        # Проверяем владение и право на обновление своих
-        if hasattr(item, 'owner') and item.owner == self:
-            return self.has_permission_field('Items', 'update_permission')
-
-        return False
-
-    def can_delete_item(self, item):
-        """Может ли удалить товар: владелец+delete_permission ИЛИ delete_all_permission"""
-        if self.has_permission_field('Items', 'delete_all_permission'):
-            return True
-
-        if hasattr(item, 'owner') and item.owner == self:
-            return self.has_permission_field('Items', 'delete_permission')
-
-        return False
-
     class Meta:
         verbose_name = "Пользователь"
         verbose_name_plural = "Пользователи"

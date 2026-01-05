@@ -77,6 +77,3 @@ class UserAdmin(BaseUserAdmin):
     @admin.display(description="Роль")
     def role_name(self, obj):
         return obj.role.name if obj.role else '-'
-
-
-# admin.site.register(User, UserAdmin)

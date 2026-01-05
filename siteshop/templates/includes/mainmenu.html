@@ -59,5 +59,13 @@
             {% endif %}
 
             {% endif %}
+
+
+            {% if title == "Про API" %}
+            <li><a class="selected">Про API</a></li>
+            {% else %}
+            <li><a href="{% url "users:about_api" %}">Про API</a></li>
+            {% endif %}
+
         </ul>
         <br style="clear: left" />
