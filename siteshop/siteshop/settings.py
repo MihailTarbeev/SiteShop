@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'users.middleware.SessionAuthMiddleware',
+    'users.middleware.JWTAuthMiddleware',
 ]
 
 ROOT_URLCONF = 'siteshop.urls'
@@ -135,3 +135,6 @@ DEFAULT_ITEM_IMAGE = MEDIA_URL + "shop/default.png"
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
 LOGIN_URL = "users:login"
+
+REFRESH_TOKEN_LIFETIME_DAYS = 7
+ACCESS_TOKEN_LIFETIME_HOURS = 1

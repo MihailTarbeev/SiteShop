@@ -12,5 +12,5 @@ urlpatterns = [
     path('api/v1/rules/', views.ListRulesAPI.as_view(), name='api_rules'),
     path('api/v1/rules/<int:pk>/', views.UpdateRuleAPI.as_view(),
          name='api_rule_detail'),
-    path('about_api', views.AboutApi.as_view(), name='about_api'),
+    path('about_api', views.AboutApi.as_view(), name='about_api')
 ]

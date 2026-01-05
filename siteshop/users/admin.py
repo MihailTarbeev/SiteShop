@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import Role, BusinessElement, AccessRoleRule, User, Session
+from .models import Role, BusinessElement, AccessRoleRule, User
 from django.utils.translation import gettext_lazy as _
 
 
@@ -28,21 +28,21 @@ class AccessRoleRuleAdmin(admin.ModelAdmin):
     ordering = ('role', "element")
 
 
-@admin.register(Session)
-class SessionAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'session_key_short',
-                    'created_at', 'expires_at', 'is_active', 'is_valid')
-    list_display_links = ('id', 'user')
-    readonly_fields = ('id', 'session_key', 'created_at', 'expires_at', 'user')
-    ordering = ("-created_at",)
+# @admin.register(Session)
+# class SessionAdmin(admin.ModelAdmin):
+#     list_display = ('id', 'user', 'session_key_short',
+#                     'created_at', 'expires_at', 'is_active', 'is_valid')
+#     list_display_links = ('id', 'user')
+#     readonly_fields = ('id', 'session_key', 'created_at', 'expires_at', 'user')
+#     ordering = ("-created_at",)
 
-    @admin.display(description="Ключ сессии")
-    def session_key_short(self, obj):
-        return f"{obj.session_key[:20]}..." if obj.session_key else ""
+#     @admin.display(description="Ключ сессии")
+#     def session_key_short(self, obj):
+#         return f"{obj.session_key[:20]}..." if obj.session_key else ""
 
-    @admin.display(description="Валидна", boolean=True)
-    def is_valid(self, obj):
-        return obj.is_valid()
+#     @admin.display(description="Валидна", boolean=True)
+#     def is_valid(self, obj):
+#         return obj.is_valid()
 
 
 @admin.register(User)

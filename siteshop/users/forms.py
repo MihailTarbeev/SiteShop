@@ -40,10 +40,13 @@ class RegisterUserForm(UserCreationForm):
 
 
 class LoginForm(forms.Form):
-    email = forms.EmailField(label='Email')
+    email = forms.EmailField(
+        label="Email",
+        widget=forms.EmailInput(attrs={'class': 'form-control'})
+    )
     password = forms.CharField(
-        label='Пароль',
-        widget=forms.PasswordInput
+        label="Пароль",
+        widget=forms.PasswordInput(attrs={'class': 'form-control'})
     )
 
 

@@ -2,12 +2,12 @@ from datetime import timedelta
 import uuid
 import bcrypt
 from django.db import models
-from django.contrib.auth.models import AbstractUser
 import secrets
-import bcrypt
 from django.utils import timezone
 from django.contrib.auth.hashers import check_password as django_check_password
-from django.contrib.auth.models import BaseUserManager
+from django.contrib.auth.models import BaseUserManager, AbstractUser
+
+from siteshop import settings
 from .validators import RussianValidator
 
 
@@ -184,29 +184,121 @@ class User(AbstractUser):
         verbose_name_plural = "Пользователи"
 
 
-class Session(models.Model):
+# class Session(models.Model):
+#     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     session_key = models.CharField(max_length=255, unique=True)
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     expires_at = models.DateTimeField()
+#     is_active = models.BooleanField(default=True)
+
+#     @classmethod
+#     def create_session(cls, user):
+#         session_key = secrets.token_urlsafe(64)
+#         expires_at = timezone.now() + timedelta(days=7)
+
+#         cls.objects.create(
+#             user=user,
+#             session_key=session_key,
+#             expires_at=expires_at
+#         )
+#         return session_key
+
+#     def is_valid(self):
+#         return self.is_active and timezone.now() < self.expires_at
+
+#     class Meta:
+#         verbose_name = "Сессия"
+#         verbose_name_plural = "Сессии"
+
+
+class RefreshToken(models.Model):
+    """Модель для хранения refresh токенов"""
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    session_key = models.CharField(max_length=255, unique=True)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='refresh_tokens')
+    token = models.CharField(max_length=500, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     expires_at = models.DateTimeField()
     is_active = models.BooleanField(default=True)
 
-    @classmethod
-    def create_session(cls, user):
-        session_key = secrets.token_urlsafe(64)
-        expires_at = timezone.now() + timedelta(days=7)
-
-        cls.objects.create(
-            user=user,
-            session_key=session_key,
-            expires_at=expires_at
-        )
-        return session_key
-
     def is_valid(self):
+        """Проверяет, действителен ли токен"""
         return self.is_active and timezone.now() < self.expires_at
 
+    def revoke(self):
+        """Отзывает токен"""
+        self.is_active = False
+        self.save()
+
+    @classmethod
+    def generate_unique_token(cls):
+        """Генерирует уникальный refresh токен"""
+        max_attempts = 10
+        for _ in range(max_attempts):
+            token = secrets.token_urlsafe(128)  # Длинный случайный токен
+
+            # Проверяем уникальность
+            if not cls.objects.filter(token=token).exists():
+                return token
+
+        # Если не удалось сгенерировать уникальный за 10 попыток
+        raise ValueError("Could not generate unique token")
+
+    @classmethod
+    def create_token(cls, user, expires_in_days=settings.REFRESH_TOKEN_LIFETIME_DAYS):
+        """Создает новый refresh токен с автоматической ротацией"""
+        # Деактивируем ВСЕ старые активные токены пользователя
+        # ВАЖНО: используем update для избежания рекурсии
+        cls.objects.filter(user=user, is_active=True).update(
+            is_active=False)
+
+        # Генерируем уникальный токен
+        token = secrets.token_urlsafe(128)
+
+        expires_at = timezone.now() + timezone.timedelta(days=expires_in_days)
+
+        # ВАЖНО: Не вызываем save() напрямую, чтобы избежать переполнения стека
+        refresh_token = cls.objects.create(
+            user=user,
+            token=token,
+            expires_at=expires_at,
+            is_active=True  # Явно указываем
+        )
+        return token
+
+    @classmethod
+    def rotate_token(cls, old_token):
+        """Ротация токена: создает новый и отзывает старый"""
+        try:
+            old_rt = cls.objects.get(token=old_token, is_active=True)
+
+            # Проверяем срок действия
+            if timezone.now() > old_rt.expires_at:
+                old_rt.is_active = False
+                old_rt.save()
+                return None
+
+            # Создаем новый токен (старый автоматически отзовется в create_token)
+            new_token = cls.create_token(old_rt.user)
+
+            # Явно отзываем старый токен
+            old_rt.is_active = False
+            old_rt.save()
+
+            return new_token
+
+        except cls.DoesNotExist:
+            return None
+
+    @classmethod
+    def get_valid_token(cls, token):
+        """Получает действительный refresh токен"""
+        try:
+            return cls.objects.get(token=token, is_active=True)
+        except cls.DoesNotExist:
+            return None
+
     class Meta:
-        verbose_name = "Сессия"
-        verbose_name_plural = "Сессии"
+        verbose_name = "Refresh токен"
+        verbose_name_plural = "Refresh токены"
