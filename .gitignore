@@ -5,12 +5,10 @@ __pycache__/
 *.pyc
 
 venv/
-env/
 .venv/
 
 .vscode/
 .idea/
 
-.env
 siteshop/media
 README.md
