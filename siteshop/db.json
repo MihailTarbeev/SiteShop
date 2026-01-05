@@ -1,0 +1,508 @@
+[
+  {
+    "model": "users.role",
+    "pk": 1,
+    "fields": {
+      "name": "Admin",
+      "description": "Полный доступ ко всему"
+    }
+  },
+  {
+    "model": "users.role",
+    "pk": 2,
+    "fields": {
+      "name": "User",
+      "description": "Обычный пользователь"
+    }
+  },
+  {
+    "model": "users.role",
+    "pk": 3,
+    "fields": {
+      "name": "Manager",
+      "description": "Управление товарами"
+    }
+  },
+  {
+    "model": "users.role",
+    "pk": 4,
+    "fields": {
+      "name": "Guest",
+      "description": ""
+    }
+  },
+  {
+    "model": "users.businesselement",
+    "pk": 1,
+    "fields": {
+      "name": "Users",
+      "description": "Управление пользователями"
+    }
+  },
+  {
+    "model": "users.businesselement",
+    "pk": 2,
+    "fields": {
+      "name": "Items",
+      "description": "Управление товарами"
+    }
+  },
+  {
+    "model": "users.businesselement",
+    "pk": 3,
+    "fields": {
+      "name": "Permissions",
+      "description": "Управление правилами доступа"
+    }
+  },
+  {
+    "model": "users.businesselement",
+    "pk": 4,
+    "fields": {
+      "name": "Orders",
+      "description": "Управление заказами"
+    }
+  },
+  {
+    "model": "users.accessrolerule",
+    "pk": 1,
+    "fields": {
+      "role": 1,
+      "element": 1,
+      "read_permission": true,
+      "read_all_permission": true,
+      "create_permission": true,
+      "update_permission": true,
+      "update_all_permission": true,
+      "delete_permission": true,
+      "delete_all_permission": true
+    }
+  },
+  {
+    "model": "users.accessrolerule",
+    "pk": 2,
+    "fields": {
+      "role": 1,
+      "element": 2,
+      "read_permission": true,
+      "read_all_permission": true,
+      "create_permission": true,
+      "update_permission": true,
+      "update_all_permission": true,
+      "delete_permission": true,
+      "delete_all_permission": true
+    }
+  },
+  {
+    "model": "users.accessrolerule",
+    "pk": 3,
+    "fields": {
+      "role": 1,
+      "element": 3,
+      "read_permission": true,
+      "read_all_permission": true,
+      "create_permission": true,
+      "update_permission": true,
+      "update_all_permission": true,
+      "delete_permission": true,
+      "delete_all_permission": true
+    }
+  },
+  {
+    "model": "users.accessrolerule",
+    "pk": 4,
+    "fields": {
+      "role": 2,
+      "element": 1,
+      "read_permission": true,
+      "read_all_permission": false,
+      "create_permission": false,
+      "update_permission": true,
+      "update_all_permission": false,
+      "delete_permission": true,
+      "delete_all_permission": false
+    }
+  },
+  {
+    "model": "users.accessrolerule",
+    "pk": 5,
+    "fields": {
+      "role": 2,
+      "element": 2,
+      "read_permission": true,
+      "read_all_permission": true,
+      "create_permission": false,
+      "update_permission": false,
+      "update_all_permission": false,
+      "delete_permission": false,
+      "delete_all_permission": false
+    }
+  },
+  {
+    "model": "users.accessrolerule",
+    "pk": 6,
+    "fields": {
+      "role": 2,
+      "element": 3,
+      "read_permission": false,
+      "read_all_permission": false,
+      "create_permission": false,
+      "update_permission": false,
+      "update_all_permission": false,
+      "delete_permission": false,
+      "delete_all_permission": false
+    }
+  },
+  {
+    "model": "users.accessrolerule",
+    "pk": 7,
+    "fields": {
+      "role": 3,
+      "element": 1,
+      "read_permission": true,
+      "read_all_permission": false,
+      "create_permission": false,
+      "update_permission": true,
+      "update_all_permission": false,
+      "delete_permission": true,
+      "delete_all_permission": false
+    }
+  },
+  {
+    "model": "users.accessrolerule",
+    "pk": 8,
+    "fields": {
+      "role": 3,
+      "element": 2,
+      "read_permission": true,
+      "read_all_permission": true,
+      "create_permission": true,
+      "update_permission": true,
+      "update_all_permission": false,
+      "delete_permission": true,
+      "delete_all_permission": false
+    }
+  },
+  {
+    "model": "users.accessrolerule",
+    "pk": 9,
+    "fields": {
+      "role": 3,
+      "element": 3,
+      "read_permission": true,
+      "read_all_permission": false,
+      "create_permission": false,
+      "update_permission": false,
+      "update_all_permission": false,
+      "delete_permission": false,
+      "delete_all_permission": false
+    }
+  },
+  {
+    "model": "users.accessrolerule",
+    "pk": 10,
+    "fields": {
+      "role": 4,
+      "element": 1,
+      "read_permission": false,
+      "read_all_permission": false,
+      "create_permission": false,
+      "update_permission": false,
+      "update_all_permission": false,
+      "delete_permission": false,
+      "delete_all_permission": false
+    }
+  },
+  {
+    "model": "users.accessrolerule",
+    "pk": 11,
+    "fields": {
+      "role": 4,
+      "element": 2,
+      "read_permission": true,
+      "read_all_permission": true,
+      "create_permission": false,
+      "update_permission": false,
+      "update_all_permission": false,
+      "delete_permission": false,
+      "delete_all_permission": false
+    }
+  },
+  {
+    "model": "users.accessrolerule",
+    "pk": 12,
+    "fields": {
+      "role": 4,
+      "element": 3,
+      "read_permission": false,
+      "read_all_permission": false,
+      "create_permission": false,
+      "update_permission": false,
+      "update_all_permission": false,
+      "delete_permission": false,
+      "delete_all_permission": false
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+      "password": "$2b$12$Fvn4hgO0C7fGMt1IdSEjwudTkl3cERUoeCjbIr.ob23yeWlKR2G.2",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-01-03T19:39:36.227Z",
+      "email": "test1@test.com",
+      "username": "8090a9c3-34cb-48ab-9621-a635619049ce",
+      "patronymic": "Иванович",
+      "photo": "",
+      "first_name": "Иван",
+      "last_name": "Иванов",
+      "role": 3,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 5,
+    "fields": {
+      "password": "$2b$12$64rUtr3.9bScxL0fSM.E.ud5mJk89bteWukrqTfk/vWnrQa5lgGBu",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-01-03T19:54:12.135Z",
+      "email": "test2@test.com",
+      "username": "1d5e9647-9fc7-4421-98eb-cc7105d3f86b",
+      "patronymic": "Алексеевич",
+      "photo": "",
+      "first_name": "Алексей",
+      "last_name": "Алексеев",
+      "role": 3,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 6,
+    "fields": {
+      "password": "$2b$12$oRk5qhKmLwnhuNehGROV6erFXP.cBERXO68ty2Xa74yJJAQ490W8.",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-01-03T19:55:06.759Z",
+      "email": "test3@test.com",
+      "username": "d4ef9374-6426-4ab3-8fa7-341a766c014e",
+      "patronymic": "Олегович",
+      "photo": "",
+      "first_name": "Олег",
+      "last_name": "Олегов",
+      "role": 3,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 9,
+    "fields": {
+      "password": "$2b$12$yeo7OiL0qtyQymAsTA1cXeHFzij9AID/ZkNK7QHcJkTB17yQkpAoy",
+      "last_login": "2026-01-05T05:26:09.334Z",
+      "is_superuser": true,
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2026-01-03T20:30:21.036Z",
+      "email": "root@root.com",
+      "username": "3d144e54-c5af-4c47-8f2c-abffd8d30bc7",
+      "patronymic": null,
+      "photo": "",
+      "first_name": "Админ",
+      "last_name": "Админов",
+      "role": 1,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 12,
+    "fields": {
+      "password": "$2b$12$heAcs7Dgcnsx3aRehTuubuGv3fmiC9NuXEOIWs1kR8ebqBrzVlBSi",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-01-04T15:39:41.251Z",
+      "email": "user@test.com",
+      "username": "12103426-5bfa-48db-a70d-0eed5c2b12a5",
+      "patronymic": null,
+      "photo": "",
+      "first_name": "Покупатель",
+      "last_name": "Покупатель",
+      "role": 2,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 13,
+    "fields": {
+      "password": "$2b$12$7FixPGB/QiQWZmbze2xuW.6ZkUTgzz4l0wge/MMi/ty8CjDdzWWVG",
+      "last_login": null,
+      "is_superuser": false,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-01-04T15:51:37.499Z",
+      "email": "guest@test.com",
+      "username": "da83898a-5e94-4c02-976b-0554ee16202e",
+      "patronymic": null,
+      "photo": "",
+      "first_name": "Гость",
+      "last_name": "Гость",
+      "role": 4,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "shop.item",
+    "pk": 4,
+    "fields": {
+      "name": "Оливье",
+      "price": "499.99",
+      "description": "Закусочный салат русской кухни из отварных корнеплодов, солёных огурцов, яиц с мясом или варёной колбасой в майонезной заправке.",
+      "owner": 3,
+      "created_at": "2026-01-03T19:41:55.655Z",
+      "updated_at": "2026-01-03T19:41:55.655Z",
+      "is_available": true,
+      "image": "items/2026/01/03/оливье.png",
+      "category": 2,
+      "slug": "olivie"
+    }
+  },
+  {
+    "model": "shop.item",
+    "pk": 5,
+    "fields": {
+      "name": "Новогодний чай",
+      "price": "9.99",
+      "description": "Напиток, который ассоциируется с новогодним праздником, может быть частью праздничного декора или подарком. За отзыв мы готовы добавить кубик сахара.",
+      "owner": 3,
+      "created_at": "2026-01-03T19:44:52.904Z",
+      "updated_at": "2026-01-03T19:44:52.904Z",
+      "is_available": true,
+      "image": "items/2026/01/03/кружка_чая.jpg",
+      "category": 2,
+      "slug": "tea"
+    }
+  },
+  {
+    "model": "shop.item",
+    "pk": 6,
+    "fields": {
+      "name": "Морская свинка Иван",
+      "price": "999.99",
+      "description": "Морская свинка Иван — приятный молодой грызун вид, одомашненных грызунов из рода свинок семейства свинковых.",
+      "owner": 3,
+      "created_at": "2026-01-03T19:47:45.063Z",
+      "updated_at": "2026-01-03T19:47:45.063Z",
+      "is_available": true,
+      "image": "items/2026/01/03/морская_свинка.jpg",
+      "category": 5,
+      "slug": "ivan-morska9-svinka"
+    }
+  },
+  {
+    "model": "shop.item",
+    "pk": 7,
+    "fields": {
+      "name": "Дед Мороз",
+      "price": "2026.00",
+      "description": "Это новогодняя игрушка, которая может использоваться как декоративный элемент, часть праздничного сценария или фотозоны.",
+      "owner": 6,
+      "created_at": "2026-01-03T19:56:46.247Z",
+      "updated_at": "2026-01-03T20:15:28.764Z",
+      "is_available": true,
+      "image": "items/2026/01/03/дед_мороз.jpg",
+      "category": 1,
+      "slug": "ded-moroz"
+    }
+  },
+  {
+    "model": "shop.item",
+    "pk": 8,
+    "fields": {
+      "name": "Новогодние ёлочки",
+      "price": "200.00",
+      "description": "Самодельные новогодние игрушки в виде ёлочки",
+      "owner": 6,
+      "created_at": "2026-01-03T20:11:37.318Z",
+      "updated_at": "2026-01-03T20:11:37.318Z",
+      "is_available": true,
+      "image": "items/2026/01/03/ёлочки.jpg",
+      "category": 1,
+      "slug": "toys"
+    }
+  },
+  {
+    "model": "shop.item",
+    "pk": 9,
+    "fields": {
+      "name": "Гарри Поттер",
+      "price": "777.00",
+      "description": "Игрушка Гарри Поттера",
+      "owner": 6,
+      "created_at": "2026-01-03T20:13:53.304Z",
+      "updated_at": "2026-01-03T20:13:53.304Z",
+      "is_available": true,
+      "image": "items/2026/01/03/Гарри_Поттер.jpg",
+      "category": 1,
+      "slug": "garry"
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 1,
+    "fields": {
+      "name": "Игрушки",
+      "slug": "toys"
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 2,
+    "fields": {
+      "name": "Еда",
+      "slug": "food"
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 3,
+    "fields": {
+      "name": "Одежда",
+      "slug": "clothes"
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 4,
+    "fields": {
+      "name": "Мебель",
+      "slug": "furniture"
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 5,
+    "fields": {
+      "name": "Животные",
+      "slug": "animals"
+    }
+  }
+]
