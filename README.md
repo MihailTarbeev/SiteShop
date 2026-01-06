@@ -220,7 +220,7 @@ command: >
 Изменение правила доступа через PUT запрос (пример API запроса в Postman):
 
 <div align="center">
-<img src="./siteshop/media/for_readme/запрос к API.jpg" width="600" alt="Пример API запроса в Postman"/>
+<img src="./siteshop/media/for_readme/Запрос к API.jpg" width="600" alt="Пример API запроса в Postman"/>
 </div>
 
 
@@ -229,11 +229,88 @@ command: >
 
 Система включает комплексные тесты для проверки системы доступа. Тесты написаны с использованием стандартного Django Test Framework и покрывают ключевые сценарии.
 
+<a id="визуализация"></a>
+## 🎨 Визуализация сайта
+
+### 📱 Основные страницы
+
+<center>
+<table>
+  <tr>
+    <td align="center" valign="top">
+      <img src="./siteshop/media/for_readme/Главная.png" width="95%">
+      <br>
+      <b>Главная страница магазина</b>
+    </td>
+    <td align="center" valign="top">
+      <img src="./siteshop/media/for_readme/Профиль.png" width="70%">
+      <br>
+      <b>Профиль пользователя</b>
+  </tr>
+  <tr>
+    <td align="center" valign="top">
+      <img src="./siteshop/media/for_readme/Авторизация.png" width="65%">
+      <br>
+      <b>Авторизация</b>
+    </td>
+    <td align="center" valign="top">
+      <img src="./siteshop/media/for_readme/Товар.png" width="65%">
+      <br>
+      <b>Карточка товара</b>
+    </td>
+  </tr>
+    <tr>
+    <td align="center" valign="top">
+      <img src="./siteshop/media/for_readme/Добавление товара.png" width="85%">
+      <br>
+      <b>Добавление товара</b>
+    </td>
+    <td align="center" valign="top">
+      <img src="./siteshop/media/for_readme/Редактирование товара.png" width="65%">
+      <br>
+      <b>Редактирование товара</b>
+    </td>
+  </tr>
+      <tr>
+    <td align="center" valign="top">
+      <img src="./siteshop/media/for_readme/Удаление товара.png" width="65%">
+      <br>
+      <b>Удаление товара</b>
+    </td>
+    <td align="center" valign="top">
+      <img src="./siteshop/media/for_readme/Удаление профиля.png" width="65%">
+      <br>
+      <b>Удаление профиля</b>
+    </td>
+  </tr>
+        <tr>
+    <td align="center" valign="top">
+      <img src="./siteshop/media/for_readme/Админка.png" width="100%">
+      <br>
+      <b>Админка</b>
+    </td>
+    <td align="center" valign="top">
+      <img src="./siteshop/media/for_readme/API.png" width="75%">
+      <br>
+      <b>Изменение правила доступа</b>
+    </td>
+  </tr>
+          <tr>
+    <td align="center" valign="top">
+      <img src="./siteshop/media/for_readme/Регистрация.png" width="100%">
+      <br>
+      <b>Регистрация</b>
+  </tr>
+</table>
+</center>
+
+
+
 <a id="автор"></a>
 ## 👨‍💻 Автор
 
 **Михаил Тарбеев**  
-Python Backend Developer
+Python Developer
 
 [![GitHub](https://img.shields.io/badge/GitHub-MihailTarbeev-181717?logo=github)](https://github.com/MihailTarbeev)
 ---
