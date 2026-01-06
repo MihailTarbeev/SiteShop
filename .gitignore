@@ -10,5 +10,6 @@ venv/
 .vscode/
 .idea/
 
-siteshop/media
-README.md
+siteshop/media/users
+siteshop/media/shop
+siteshop/media/items
