@@ -220,7 +220,7 @@ command: >
 Изменение правила доступа через PUT запрос (пример API запроса в Postman):
 
 <div align="center">
-<img src="./siteshop/media/for_readme/Запрос к API.jpg" width="600" alt="Пример API запроса в Postman"/>
+<img src="./siteshop/media/for_readme/запрос к API.jpg" width="600" alt="Пример API запроса в Postman"/>
 </div>
 
 
