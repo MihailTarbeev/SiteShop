@@ -10,6 +10,7 @@ venv/
 .vscode/
 .idea/
 
-siteshop/media/users
-siteshop/media/shop
+
+siteshop/media/users/*
+!siteshop/media/users/default.jpg
 siteshop/media/items
